@@ -7,7 +7,7 @@ require 'recipe/common.php';
 set('application', 'www.nonodi.com');
 
 // Project repository
-set('repository', 'https://github.com/hzjoyous/hzjoyous.github.io.git');
+set('repository', 'https://github.com/hzjoyous/my-website.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
 set('git_tty', false); 
