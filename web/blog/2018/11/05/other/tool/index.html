@@ -1,0 +1,257 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  
+  <title>工具箱 | biubiubiu~</title>
+  <meta name="author" content="hzjoyous">
+  
+  <meta name="description" content="my_win
+关于 windows 独占的工具使用
+
+##
+12# 一个控制台的调色工具 ms 官方提供https://github.com/Microsoft/console/releases/tag/1708.14008
+
+my_wsl123# github_page 本地配置，具体安装。。。忘">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="工具箱"/>
+  <meta property="og:site_name" content="biubiubiu~"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/web/blog/favicon.png" rel="icon">
+  <link rel="alternate" href="/web/blog/atom.xml" title="biubiubiu~" type="application/atom+xml">
+  <link rel="stylesheet" href="/web/blog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/web/blog/">biubiubiu~</a></h1>
+  <h2><a href="/web/blog/">快乐~</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/web/blog/">Home</a></li>
+    
+      <li><a href="/web/blog/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-other/tool" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2018-11-05T07:25:38.000Z"><a href="/web/blog/2018/11/05/other/tool/">2018-11-05</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">工具箱</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <h1 id="my-win"><a href="#my-win" class="headerlink" title="my_win"></a>my_win</h1><blockquote>
+<p>关于 windows 独占的工具使用</p>
+</blockquote>
+<p>##</p>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 一个控制台的调色工具 ms 官方提供</span><br><span class="line"><span class="function">https://<span class="title">github.com</span>/<span class="title">Microsoft</span>/<span class="title">console</span>/<span class="title">releases</span>/<span class="title">tag</span>/1708.14008</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="my-wsl"><a href="#my-wsl" class="headerlink" title="my_wsl"></a>my_wsl</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># github_page 本地配置，具体安装。。。忘了</span></span><br><span class="line"><span class="comment"># 如果使用 kali 版本的 wsl 则安装非常省事，具体见百度</span></span><br><span class="line"><span class="built_in">alias</span> blogrun=<span class="string">'bundle exec jekyll serve'</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h1><h2 id="command"><a href="#command" class="headerlink" title="command"></a>command</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#匹配文件后缀为 .jpg 的文件并且删除</span></span><br><span class="line">find ./ -name <span class="string">'*.jpg'</span>  | xargs rm </span><br><span class="line"></span><br><span class="line"><span class="comment"># svn 根据提交人过滤 / sed 命令的使用</span></span><br><span class="line">svn <span class="built_in">log</span> --<span class="built_in">limit</span> 10 -v | sed -n <span class="string">'/username/,/-----$/ p'</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># 多彩日志</span></span><br><span class="line">tail -f test_stub.log |  perl -pe <span class="string">'s/(500)|(200)|(404)|(error)/\e[1;31m$1\e\e[1;32m$2\e\e[1;36m$3\e\e[1;31m$4\e[0m/g'</span>  </span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"\033[30m 黑色字 \033[0m"</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"\033[31m 红色字 \033[0m"</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"\033[32m 绿色字 \033[0m"</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"\033[33m 黄色字 \033[0m"</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"\033[34m 蓝色字 \033[0m"</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"\033[35m 紫色字 \033[0m"</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"\033[36m 天蓝字 \033[0m"</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"\033[37m 白色字 \033[0m"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"\033[40;37m 黑底白字 \033[0m"</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"\033[41;37m 红底白字 \033[0m"</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"\033[42;37m 绿底白字 \033[0m"</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"\033[43;37m 黄底白字 \033[0m"</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"\033[44;37m 蓝底白字 \033[0m"</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"\033[45;37m 紫底白字 \033[0m"</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"\033[46;37m 天蓝底白字 \033[0m"</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"\033[47;30m 白底黑字 \033[0m"</span></span><br><span class="line"></span><br><span class="line">ps -ef|grep <span class="string">"zhaoyinfan/supervisor"</span> | grep -v grep | awk <span class="string">'&#123;print $1&#125;'</span> | xargs <span class="built_in">kill</span> -9</span><br><span class="line"></span><br><span class="line"><span class="comment">#ps -ef|grep "zhaoyinfan/supervisor" | grep -v grep | awk '&#123;print $2 " " $9" "$10" "$11&#125;' &gt; resupervisord &amp;&amp; cat  resupervisord | awk '&#123;print $1&#125;'  | xargs kill -9  &amp;&amp;  cat  resupervisord | awk '&#123;print $2" " $3" " $4&#125;' &gt; resupervisord &amp;&amp; sh resupervisord &amp;&amp; rm resupervisord</span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="git"><a href="#git" class="headerlink" title="git"></a>git</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">git config user.name <span class="string">'github用户名'</span>  </span><br><span class="line">git config user.email <span class="string">'邮箱'</span>  </span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化</span></span><br><span class="line">git init</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m <span class="string">"first commit"</span></span><br><span class="line">git remote add origin git@github.com:hzj991/hexo.git</span><br><span class="line">git push -u origin master</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换远程分支</span></span><br><span class="line">git remote rm origin</span><br><span class="line">git remote add origin git@github.com:hzj991/hexo-next.git</span><br><span class="line">git push --<span class="built_in">set</span>-upstream origin master</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 vimdiff 进行 git diff</span></span><br><span class="line">git config --global diff.tool vimdiff</span><br><span class="line">git config --global difftool.prompt <span class="literal">false</span></span><br><span class="line">git config --global alias.d difftool</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清除提交记录缓存</span></span><br><span class="line">git rm --cached application.log</span><br><span class="line">git rm -r --cached .  </span><br><span class="line">git add .gitignore  </span><br><span class="line">git commit -m <span class="string">"update .gitignore"</span>  </span><br><span class="line">git remote add origin git@23123.com</span><br><span class="line">git remote prune origin</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果是linux和windows混合开发，很容易会遇到行尾换行符的问题，windows下默认是\r\n，linux下是\n。如果没做处理，git提交时很有可能产生问题，解决办法为设置git config的 core.autocrlf，</span></span><br><span class="line">git config --global core.autocrlf <span class="literal">true</span> <span class="comment"># 表示自动更换crlf，windows下如果checkout是\n，则自动换为\r\n，在提交时在自动换回\n</span></span><br><span class="line">git config --global core.autocrlf input <span class="comment"># 自动把\r\n换为\n</span></span><br><span class="line">git config --global core.autocrlf <span class="literal">false</span> <span class="comment"># 就是不作处理</span></span><br><span class="line"><span class="comment"># 如果已经产生了\r\n，merge时产生问题，可以设置</span></span><br><span class="line">git config merge.renormalize <span class="literal">true</span> <span class="comment"># merge时忽略行尾对比</span></span><br><span class="line">如果只需要执行一次merge可以是用命令</span><br><span class="line">git merge -s recursive -X ignore-space-at-eol origin/master</span><br><span class="line"><span class="comment"># 还可以设置crlf安全检查</span></span><br><span class="line">git config --global core.safecrlf <span class="literal">true</span> <span class="comment"># 禁止提交混合\n和\r\n的文件</span></span><br><span class="line">git config --global core.safecrlf <span class="literal">false</span> <span class="comment"># 允许提交</span></span><br><span class="line">git config --global core.safecrlf warn <span class="comment"># 提交时产生警告</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果经常产生文件属性变更的情况，可以设置</span></span><br><span class="line">git config --global core.filemode <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+
+<p>扩展:</p>
+<ul>
+<li><a href="http://blog.jobbole.com/87700/" target="_blank" rel="noopener">几乎所有的 git 撤销</a></li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/users/hzj/tmpgit/web/                                                                                                                                                                                </span><br><span class="line">git checkout master                                                                                                                                                                                                 </span><br><span class="line">oldTimetime=$(date -d <span class="string">"3 days ago"</span> +%Y_%m_%d_%H)                                                                                                                                                                    </span><br><span class="line">git branch -d hotfix/hzj/<span class="variable">$&#123;oldTimetime&#125;</span>                                                                                                                                                                       </span><br><span class="line">git push origin --delete hotfix/hzj/<span class="variable">$&#123;oldTimetime&#125;</span>                                                                                                                                                            </span><br><span class="line">git pull                                                                                                                                                                                                            </span><br><span class="line">time=$(date <span class="string">"+%Y_%m_%d_%H"</span>)                                                                                                                                                                                         </span><br><span class="line">branchName=hotfix/hzj/<span class="variable">$&#123;time&#125;</span>                                                                                                                                                                                 </span><br><span class="line">git checkout -b <span class="variable">$&#123;branchName&#125;</span>                                                                                                                                                                                       </span><br><span class="line">git pull                                                                                                                                                                                                            </span><br><span class="line">git push origin <span class="variable">$&#123;branchName&#125;</span>:<span class="variable">$&#123;branchName&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="lnmp"><a href="#lnmp" class="headerlink" title="lnmp"></a>lnmp</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">php -S 0.0.0.0:8080 index.php</span><br><span class="line"></span><br><span class="line">sudo service nginx reload</span><br><span class="line">sudo service nginx restart</span><br><span class="line"></span><br><span class="line">sudo service php-fpm reload</span><br><span class="line">sudo service php-fpm restart</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mysqldump  -h 10.0.1.90 -u username  -p  -P 3306 --no-data  --skip-lock-table --databases databaseName &gt; dump.sql</span><br><span class="line">mysql -h 10.0.2.72 -u username -p -P 3306 bookorder &lt; dump.sql </span><br><span class="line"></span><br><span class="line">*</span><br><span class="line">ssh-keygen -t rsa </span><br><span class="line">cat id_rsa.pub &gt;&gt; authorized_keys</span><br></pre></td></tr></table></figure>
+
+<h1 id="linux-1"><a href="#linux-1" class="headerlink" title="linux"></a>linux</h1><p>添加用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd -m getianmeng</span><br><span class="line">passwd getianmeng W4v1iQt*****************</span><br></pre></td></tr></table></figure>
+<p> 添加yum的root执行权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#vim sudoers</span><br><span class="line">cd &#x2F;etc&#x2F;sudoers.d</span><br></pre></td></tr></table></figure>
+<p><code>getianmeng ALL=(root) /usr/bin/yum</code></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/web/blog/categories/tool/">tool</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/web/blog/tags/tool/">tool</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="https://hzjoyous.github.io/web/blog/2018/11/05/other/tool/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="hzjoyous.github.io/web/blog">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/web/blog/categories/c/">c</a><small>11</small></li>
+  
+    <li><a href="/web/blog/categories/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/node/">node</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/other/">other</a><small>14</small></li>
+  
+    <li><a href="/web/blog/categories/php/">php</a><small>23</small></li>
+  
+    <li><a href="/web/blog/categories/python/">python</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/tool/">tool</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/web/blog/tags/blog/">blog</a><small>3</small></li>
+  
+    <li><a href="/web/blog/tags/c/">c</a><small>11</small></li>
+  
+    <li><a href="/web/blog/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/http/">http</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/java/">java</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/mysql/">mysql</a><small>2</small></li>
+  
+    <li><a href="/web/blog/tags/node/">node</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/other/">other</a><small>14</small></li>
+  
+    <li><a href="/web/blog/tags/php/">php</a><small>23</small></li>
+  
+    <li><a href="/web/blog/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/tool/">tool</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2019 hzjoyous
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/web/blog/js/jquery-3.4.1.min.js"></script>
+
+<script src="/web/blog/js/jquery.imagesloaded.min.js"></script>
+<script src="/web/blog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/web/blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/web/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

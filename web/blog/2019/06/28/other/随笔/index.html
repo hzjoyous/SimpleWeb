@@ -1,0 +1,244 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  
+  <title>从数据绑定看现代库的本质（随笔） | biubiubiu~</title>
+  <meta name="author" content="hzjoyous">
+  
+  <meta name="description" content="这边文章目前没有想清楚如何表达只是作为一份草稿写来展示的
+编码中没有什么是加一层解决不了的，如果有就再加一层">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="从数据绑定看现代库的本质（随笔）"/>
+  <meta property="og:site_name" content="biubiubiu~"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/web/blog/favicon.png" rel="icon">
+  <link rel="alternate" href="/web/blog/atom.xml" title="biubiubiu~" type="application/atom+xml">
+  <link rel="stylesheet" href="/web/blog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/web/blog/">biubiubiu~</a></h1>
+  <h2><a href="/web/blog/">快乐~</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/web/blog/">Home</a></li>
+    
+      <li><a href="/web/blog/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-other/随笔" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2019-06-28T07:25:00.000Z"><a href="/web/blog/2019/06/28/other/随笔/">2019-06-28</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">从数据绑定看现代库的本质（随笔）</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p><code>这边文章目前没有想清楚如何表达只是作为一份草稿写来展示的</code></p>
+<p>编码中没有什么是加一层解决不了的，如果有就再加一层</p>
+<a id="more"></a>
+<p>前端双向绑定的功能之一是由<code>Object.defineProperty</code>实现的 (可以并非唯一)</p>
+<p>ioc 可以利用反射</p>
+<p>闭包可以用来延迟加载</p>
+<p>现在我们作为一个无法使用例如 vue 或者使用 lavarl 这样的框架或者库的时候我们应该如何实现类似的功能</p>
+<h2 id="双向绑定-（肤浅的例子）"><a href="#双向绑定-（肤浅的例子）" class="headerlink" title="双向绑定 （肤浅的例子）"></a>双向绑定 （肤浅的例子）</h2><p>监听所有的事件，在此基础上实现 set 和 get 的接口 从而实现事件的监听</p>
+<h2 id="ioc-的多种实现途径-（php版本）"><a href="#ioc-的多种实现途径-（php版本）" class="headerlink" title="ioc 的多种实现途径 （php版本）"></a>ioc 的多种实现途径 （php版本）</h2><p><code>控制反转（Inversion of Control，缩写为IoC），是面向对象编程中的一种设计原则，可以用来减低计算机代码之间的耦合度。其中最常见的方式叫做依赖注入（Dependency Injection，简称DI），还有一种方式叫“依赖查找”（Dependency Lookup）。通过控制反转，对象在被创建的时候，由一个调控系统内所有对象的外界实体将其所依赖的对象的引用传递给它。也可以说，依赖被注入到对象中</code></p>
+<ul>
+<li>反射类分析类整体</li>
+<li>编写由php写成的语法分析器解析代码，分析出依赖的对象</li>
+</ul>
+<p>控制反转容器的依赖查找即分析代码的依赖，并解决这些依赖，竟然如此其实即使没有反射api的存在，只要可以对代码进行分析就可以把依赖解决。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">action</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">eat</span><span class="params">(Food $food)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在php 框架之中大多框架的延迟加载是通过闭包实现的，下面是php延迟加载的一个简版php代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">buildLazyClass</span><span class="params">($className,$params)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="params">()</span> <span class="title">use</span> <span class="params">($className,$params)</span></span>&#123;</span><br><span class="line">        <span class="keyword">new</span> $className($params);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$lazyFood = buildLazyClass(<span class="string">'Food'</span>)</span><br><span class="line"><span class="keyword">if</span>(is_callback($lazyFood))&#123;</span><br><span class="line">    <span class="keyword">return</span> $lazyFood();</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> $lazyFood;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="构建延迟加载"><a href="#构建延迟加载" class="headerlink" title="构建延迟加载"></a>构建延迟加载</h2><p>如果一个语言没有实现闭包呢？ 那就只能自己想办法实现了<br>现在第一步用反射类或者语法分析器分解目标类，分析出依赖的对象，第二部是构建延迟加载类，例如下面</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LazyFood</span> </span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> $isBuild = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">private</span> $food = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> getFood()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">$this</span>-&gt;isBuild) &#123;</span><br><span class="line">            <span class="keyword">return</span> $food;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;food = <span class="keyword">new</span> Food()</span><br><span class="line">            <span class="keyword">$this</span>-&gt;build = <span class="keyword">true</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;food;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就存在相同的业务编码，实现了相同的功能，相比之下如果使用了编译代码这一步，就可以想办法将执行代码中对依赖的分析解除，从而达到更高的效率</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/web/blog/categories/c/">c</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/web/blog/tags/c/">c</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="https://hzjoyous.github.io/web/blog/2019/06/28/other/%E9%9A%8F%E7%AC%94/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="hzjoyous.github.io/web/blog">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/web/blog/categories/c/">c</a><small>11</small></li>
+  
+    <li><a href="/web/blog/categories/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/node/">node</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/other/">other</a><small>14</small></li>
+  
+    <li><a href="/web/blog/categories/php/">php</a><small>23</small></li>
+  
+    <li><a href="/web/blog/categories/python/">python</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/tool/">tool</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/web/blog/tags/blog/">blog</a><small>3</small></li>
+  
+    <li><a href="/web/blog/tags/c/">c</a><small>11</small></li>
+  
+    <li><a href="/web/blog/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/http/">http</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/java/">java</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/mysql/">mysql</a><small>2</small></li>
+  
+    <li><a href="/web/blog/tags/node/">node</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/other/">other</a><small>14</small></li>
+  
+    <li><a href="/web/blog/tags/php/">php</a><small>23</small></li>
+  
+    <li><a href="/web/blog/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/tool/">tool</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2019 hzjoyous
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/web/blog/js/jquery-3.4.1.min.js"></script>
+
+<script src="/web/blog/js/jquery.imagesloaded.min.js"></script>
+<script src="/web/blog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/web/blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/web/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

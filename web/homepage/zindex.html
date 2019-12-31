@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>你快乐吗~</title>
+    <link rel="shortcut icon" href="public/favicon.ico" />
+    <style>
+        * {
+            text-decoration: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #header {
+            width: 98%;
+            height: 200px;
+            background: url('public/banner.jpg') no-repeat;
+            background-size: cover;
+            background-position: center center;
+            padding: 0 1%;
+        }
+
+        #header .menu {
+            width: 100%;
+        }
+
+        .menu .block {
+            height: 35px;
+            padding: 0 20px;
+            line-height: 35px;
+            background: orange;
+            margin: 10px;
+            float: left;
+        }
+
+        #main {
+            width: 100%;
+            background: #000;
+            margin: 0 auto;
+        }
+
+        #main .right {
+            width: 10%;
+            height: 500px;
+            background: url('images/chrome.png');
+            float: left;
+        }
+
+        #main .middle {
+            width: 80%;
+            background: slategray;
+            float: left;
+        }
+
+        #main .left {
+            width: 10%;
+            height: 500px;
+            background: url('images/chrome.png');
+            float: left;
+        }
+
+        #main .modular {
+            width: 100%;
+            padding: 10px auto;
+        }
+
+        #main .modular .mainLeft {
+            width: 75%;
+            background: cornsilk;
+            float: left;
+        }
+
+        #main .modular .mainRight {
+            width: 20%;
+            background: cornsilk;
+            float: right;
+        }
+
+        #main .modular .mainBlock {
+            width: 210px;
+            height: 140px;
+            margin: 5px 5px;
+            background: url("images/chrome.png") repeat;
+            background-size: cover;
+            background-position: center center;
+            float: left;
+        }
+
+        #main .modular .mainLine {
+            width: 90%;
+            height: 40px;
+            background: olivedrab;
+            margin: 1px 1px;
+            clear: both;
+        }
+
+        .clear {
+            clear: both;
+            font-size: 0;
+            height: 1%;
+        }
+
+        #footer {
+            width: 100%;
+            background: chocolate;
+            vertical-align: bottom;
+
+        }
+
+        #footer .modular {
+            width: 80%;
+            background: darkcyan;
+            margin: 0 auto;
+        }
+
+        #footer .link-box {
+            width: 33%;
+            float: left;
+        }
+
+        #footer .link-box-item-a {
+            width: 30px;
+            height: 20px;
+            background: darkgoldenrod;
+            margin: 5px;
+            float: left;
+        }
+
+        #footer .link-box-item-b {
+            width: 60px;
+            height: 20px;
+            background: rgb(98, 167, 53);
+            margin: 5px;
+            float: left;
+        }
+
+        #footer .link-box-item-c {
+            width: 80px;
+            height: 80px;
+            background: rgb(175, 83, 163);
+            margin: 5px;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div id="header">
+            <div class="menu">
+                <div class="block">menu</div>
+                <div class="block">menu</div>
+                <div class="block">menu</div>
+                <div class="block">menu</div>
+                <div class="block">menu</div>
+                <div class="clear">menu</div>
+            </div>
+        </div>
+        <div id="main">
+            <div class="left">main.left</div>
+            <div class="middle">
+                <div class="modular">
+                    <div class="mainLeft">
+                        <div class="mainBlock" v-for="newItem in newList">
+                            {{newItem.text}}
+                            <!-- <img v-bind:src="newItem.imgSrc"> -->
+                        </div>
+                    </div>
+                    <div class="mainRight">
+                        <div class="mainLine">mainLine</div>
+                        <div class="mainLine">mainLine</div>
+                        <div class="mainLine">mainLine</div>
+                        <div class="mainLine">mainLine</div>
+                        <div class="mainLine">mainLine</div>
+                        <div class="mainLine">mainLine</div>
+                    </div>
+
+                    <div class="clear"></div>
+                </div>
+                <div class="modular">
+                    <div style="width:100%;height: 200px;background: url('images/php.png');">12313231231231</div>
+                </div>
+                <div class="modular">
+                    <div class="mainLeft">
+                        <div class="mainBlock">mainBlock</div>
+                        <div class="mainBlock">mainBlock</div>
+                        <div class="mainBlock">mainBlock</div>
+                        <div class="mainBlock">mainBlock</div>
+                        <div class="mainBlock">mainBlock</div>
+                        <div class="mainBlock">mainBlock</div>
+                        <div class="mainBlock">mainBlock</div>
+                        <div class="mainBlock">mainBlock</div>
+                        <div class="mainBlock">mainBlock</div>
+                        <div class="mainBlock">mainBlock</div>
+                        <div class="mainBlock">mainBlock</div>
+                    </div>
+                    <div class="mainRight">
+                        <div class="mainLine">mainLine</div>
+                        <div class="mainLine">mainLine</div>
+                        <div class="mainLine">mainLine</div>
+                    </div>
+
+                    <div class="clear"></div>
+                </div>
+                <div class="modular">
+                    <div style="width:100%;height: 200px;background: url('images/symfony.png');">12313231231231</div>
+                </div>
+                <div class="modular">
+                    <div class="mainLeft">
+                        <div class="mainBlock">mainBlock</div>
+                        <div class="mainBlock">mainBlock</div>
+                        <div class="mainBlock">mainBlock</div>
+                        <div class="mainBlock">mainBlock</div>
+                        <div class="mainBlock">mainBlock</div>
+                        <div class="mainBlock">mainBlock</div>
+                        <div class="mainBlock">mainBlock</div>
+                        <div class="mainBlock">mainBlock</div>
+                        <div class="mainBlock">mainBlock</div>
+                        <div class="mainBlock">mainBlock</div>
+                        <div class="mainBlock">mainBlock</div>
+                    </div>
+                    <div class="mainRight">
+                        <div class="mainLine">mainLine</div>
+                    </div>
+
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="right">main right</div>
+            <div class="clear"></div>
+
+        </div>
+        <div id="footer">
+            <div class="modular">
+                <div class="link-box">
+                    <div class="link-box-item-a"></div>
+                    <div class="link-box-item-a"></div>
+                    <div class="link-box-item-a"></div>
+                    <div class="link-box-item-a"></div>
+                    <div class="link-box-item-a"></div>
+                    <div class="link-box-item-a"></div>
+                    <div class="link-box-item-a"></div>
+                    <div class="link-box-item-a"></div>
+                    <div class="link-box-item-a"></div>
+                    <div class="link-box-item-a"></div>
+                    <div class="link-box-item-a"></div>
+                    <div class="link-box-item-a"></div>
+                    <div class="link-box-item-a"></div>
+                    <div class="link-box-item-a"></div>
+                </div>
+                <div class="link-box">
+                    <div class="link-box-item-b"></div>
+                    <div class="link-box-item-b"></div>
+                    <div class="link-box-item-b"></div>
+                    <div class="link-box-item-b"></div>
+                    <div class="link-box-item-b"></div>
+                </div>
+                <div class="link-box">
+                    <div class="link-box-item-c"></div>
+                    <div class="link-box-item-c"></div>
+                    <div class="link-box-item-c"></div>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+            <div class="modular">
+                <p>互联网ICP备案：<a href="http://www.beian.miit.gov.cn" target="_blank">京ICP备17063724号-1</a></p>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                newList: [
+                    { text: '学习 JavaScript', srcImg: 'images/windows.png' },
+                    { text: '学习 Vue', srcImg: 'images/windows.png' },
+                ]
+            }
+        });
+        var baseUri = "http://127.0.0.1:8000";
+        axios.get(this.baseUri + '/test/list', {
+            params: {
+                uuid: 'this.submit.uuid',
+                identity: 'identity'
+            }
+        }).then(response => (
+            console.log(response),
+            console.log(response.data.value),
+            this.info = response.data.value,
+            app.newList = response.data.value
+        )).catch(error => console.log(error))
+    </script>
+</body>
+
+</html>

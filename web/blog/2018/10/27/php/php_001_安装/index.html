@@ -1,0 +1,246 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  
+  <title>PHP[001]:INSTALL | biubiubiu~</title>
+  <meta name="author" content="hzjoyous">
+  
+  <meta name="description" content="ubuntu
+ubuntu 中软件的卸载方法：
+1.apt方式安装：(相应的文件夹有相关的软件，先进入到软件的文件夹)  普通安装： sudo apt-get install 软件名  修复安装： sudo apt-get -f install 软件名  重新安装： sudo apt-get –rr">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="PHP[001]:INSTALL"/>
+  <meta property="og:site_name" content="biubiubiu~"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/web/blog/favicon.png" rel="icon">
+  <link rel="alternate" href="/web/blog/atom.xml" title="biubiubiu~" type="application/atom+xml">
+  <link rel="stylesheet" href="/web/blog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/web/blog/">biubiubiu~</a></h1>
+  <h2><a href="/web/blog/">快乐~</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/web/blog/">Home</a></li>
+    
+      <li><a href="/web/blog/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-php/php_001_安装" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2018-10-27T01:48:33.000Z"><a href="/web/blog/2018/10/27/php/php_001_安装/">2018-10-27</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">PHP[001]:INSTALL</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>ubuntu</p>
+<p>ubuntu 中软件的卸载方法：</p>
+<p>1.apt方式安装：(相应的文件夹有相关的软件，先进入到软件的文件夹)<br>  普通安装： sudo apt-get install 软件名<br>  修复安装： sudo apt-get -f install 软件名<br>  重新安装： sudo apt-get –rreinstall install 软件名<br>　(一般是 .deb　格式)<br>2.dpkg 方式：<br>  1.普通安装：sudo dpkg -i package_name.deb<br>=====================================<br>如果软件的格式为 .rpm 格式包时，则<br>1.先安装　alien 和　fakeroot 这两个工具，<br> sudo apt-get install alien fakeroot<br>alien 把　.rpm 为　.deb 格式的文件</p>
+<ol>
+<li><p>将　.rpm 格式的文件转为 同文件名的　.deb<br>fakeroot alien xx.rpm<br>这样就可以按上面的方法安装了</p>
+<p>1.apt 方式：<br>a. 移除式卸载： apt-get remove 软件名<br>b. 清除式卸载： apt-get –purge remove 软件名 (同时清除配置)<br>c. 清除式卸载： apt-get –purge 软件名  (同时清除配置)</p>
+<p>2.dpkg 方式：<br>a. 移除式卸载：sudo dpkg dpkg_name<br>b. 清除式卸载：sudo -P dpkg_name</p>
+</li>
+</ol>
+<p>查看已经安装的软件名称：</p>
+<p>dpkg -l</p>
+<p>查找软件库中的软件<br>apt-cache search 正则表达式<br>或者<br>aptitude search 软件包（部分）<br>可以查看相关软件的名称　标志 i　表示已经安装</p>
+<p>apt-cache search php7</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">.&#x2F;configure \</span><br><span class="line">--prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;php73 \</span><br><span class="line">--exec-prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;php73 \</span><br><span class="line">--bindir&#x3D;&#x2F;usr&#x2F;local&#x2F;php73&#x2F;bin \</span><br><span class="line">--sbindir&#x3D;&#x2F;usr&#x2F;local&#x2F;php73&#x2F;sbin \</span><br><span class="line">--includedir&#x3D;&#x2F;usr&#x2F;local&#x2F;php73&#x2F;include \</span><br><span class="line">--libdir&#x3D;&#x2F;usr&#x2F;local&#x2F;php73&#x2F;lib&#x2F;php \</span><br><span class="line">--mandir&#x3D;&#x2F;usr&#x2F;local&#x2F;php73&#x2F;php&#x2F;man \</span><br><span class="line">--with-config-file-path&#x3D;&#x2F;usr&#x2F;local&#x2F;php73&#x2F;etc \</span><br><span class="line">--with-openssl \</span><br><span class="line">--enable-mbstring \</span><br><span class="line">--enable-fpm</span><br><span class="line"></span><br><span class="line">sudo make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
+
+<h1 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># php7.1</span></span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/php71 --with-config-file-path=/usr/<span class="built_in">local</span>/php71/etc --with-config-file-scan-dir=/usr/<span class="built_in">local</span>/php71/conf.d --<span class="built_in">enable</span>-fpm --with-fpm-user=www --with-fpm-group=www --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-iconv-dir --with-freetype-dir=/usr/<span class="built_in">local</span>/freetype --with-jpeg-dir --with-png-dir --with-zlib --with-libxml-dir=/usr --<span class="built_in">enable</span>-xml --<span class="built_in">disable</span>-rpath --<span class="built_in">enable</span>-bcmath --<span class="built_in">enable</span>-shmop --<span class="built_in">enable</span>-sysvsem --<span class="built_in">enable</span>-inline-optimization --with-curl --<span class="built_in">enable</span>-mbregex --<span class="built_in">enable</span>-mbstring --with-mcrypt --<span class="built_in">enable</span>-ftp --with-gd --<span class="built_in">enable</span>-gd-native-ttf --with-openssl --with-mhash --<span class="built_in">enable</span>-pcntl --<span class="built_in">enable</span>-sockets --with-xmlrpc --<span class="built_in">enable</span>-zip --<span class="built_in">enable</span>-soap --with-gettext --<span class="built_in">disable</span>-fileinfo --<span class="built_in">enable</span>-intl --with-xsl --<span class="built_in">enable</span>-maintainer-zts </span><br><span class="line"> ./configure --with-php-config=/usr/<span class="built_in">local</span>/php71/bin/php-config --with-readline</span><br><span class="line"></span><br><span class="line"><span class="comment"># php7废弃的扩展</span></span><br><span class="line"><span class="comment"># --with-mysql=mysqlnd</span></span><br><span class="line"></span><br><span class="line">sudo make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Warning! a PEAR user config file already exists from a previous PEAR installation at &#39;&#x2F;home&#x2F;hanzhijie&#x2F;.pearrc&#39;. You may probably want to remove it.</span><br><span class="line">Wrote PEAR system config file at: &#x2F;usr&#x2F;local&#x2F;php71&#x2F;etc&#x2F;pear.conf</span><br><span class="line">You may want to add: &#x2F;usr&#x2F;local&#x2F;php71&#x2F;lib&#x2F;php to your php.ini include_path</span><br><span class="line">&#x2F;mnt&#x2F;c&#x2F;Users&#x2F;hzj&#x2F;Desktop&#x2F;boom&#x2F;tmp&#x2F;php-7.1.26&#x2F;build&#x2F;shtool install -c ext&#x2F;phar&#x2F;phar.phar &#x2F;usr&#x2F;local&#x2F;php71&#x2F;bin</span><br><span class="line">ln -s -f phar.phar &#x2F;usr&#x2F;local&#x2F;php71&#x2F;bin&#x2F;phar</span><br><span class="line">Installing PDO headers:           &#x2F;usr&#x2F;local&#x2F;php71&#x2F;include&#x2F;php&#x2F;ext&#x2F;pdo&#x2F;</span><br></pre></td></tr></table></figure>
+
+<h2 id="php7-3"><a href="#php7-3" class="headerlink" title="php7.3"></a>php7.3</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/php73 --with-config-file-path=/usr/<span class="built_in">local</span>/php73/etc --with-config-file-scan-dir=/usr/<span class="built_in">local</span>/php73/conf.d --<span class="built_in">enable</span>-fpm --with-fpm-user=www --with-fpm-group=www --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-iconv-dir --with-freetype-dir=/usr/<span class="built_in">local</span>/freetype --with-jpeg-dir --with-png-dir --with-zlib --with-libxml-dir=/usr --<span class="built_in">enable</span>-xml --<span class="built_in">disable</span>-rpath --<span class="built_in">enable</span>-bcmath --<span class="built_in">enable</span>-shmop --<span class="built_in">enable</span>-sysvsem --<span class="built_in">enable</span>-inline-optimization --with-curl --<span class="built_in">enable</span>-mbregex --<span class="built_in">enable</span>-mbstring --<span class="built_in">enable</span>-ftp --with-gd  --with-openssl --with-mhash --<span class="built_in">enable</span>-pcntl --<span class="built_in">enable</span>-sockets --with-xmlrpc --<span class="built_in">enable</span>-zip --<span class="built_in">enable</span>-soap --with-gettext --<span class="built_in">disable</span>-fileinfo --<span class="built_in">enable</span>-intl --with-xsl --with-kerberos --<span class="built_in">enable</span>-sysvshm --<span class="built_in">enable</span>-opcache --<span class="built_in">enable</span>-libxml --with-bz2 --with-pear --with-pdo-sqlite --with-pcre-regex --with-libdir=lib64 --with-kerberos --<span class="built_in">enable</span>-maintainer-zts  </span><br><span class="line">./configure --with-php-config=/usr/<span class="built_in">local</span>/php73/bin/php-config --with-readline</span><br><span class="line"><span class="comment"># php7.2废弃的扩展</span></span><br><span class="line"><span class="comment"># --with-mcrypt --enable-gd-native-ttf</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Warning! a PEAR user config file already exists from a previous PEAR installation at <span class="string">'/home/hanzhijie/.pearrc'</span>. You may probably want to remove it.</span><br><span class="line">Wrote PEAR system config file at: /usr/<span class="built_in">local</span>/php73/etc/pear.conf</span><br><span class="line">You may want to add: /usr/<span class="built_in">local</span>/php73/lib/php to your php.ini include_path</span><br><span class="line">/mnt/c/Users/hzj/Desktop/boom/tmp/php-7.3.2/build/shtool install -c ext/phar/phar.phar /usr/<span class="built_in">local</span>/php73/bin</span><br><span class="line">ln -s -f phar.phar /usr/<span class="built_in">local</span>/php73/bin/phar</span><br><span class="line">Installing PDO headers:           /usr/<span class="built_in">local</span>/php73/include/php/ext/pdo/</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="pthreads-安装"><a href="#pthreads-安装" class="headerlink" title="pthreads 安装"></a>pthreads 安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">----------------------------------------------------------------------</span><br><span class="line">Libraries have been installed in:</span><br><span class="line">   &#x2F;mnt&#x2F;c&#x2F;Users&#x2F;hzj&#x2F;Desktop&#x2F;boom&#x2F;tmp&#x2F;pthreads-master&#x2F;modules</span><br><span class="line"></span><br><span class="line">If you ever happen to want to link against installed libraries</span><br><span class="line">in a given directory, LIBDIR, you must either use libtool, and</span><br><span class="line">specify the full pathname of the library, or use the &#96;-LLIBDIR&#39;</span><br><span class="line">flag during linking and do at least one of the following:</span><br><span class="line">   - add LIBDIR to the &#96;LD_LIBRARY_PATH&#39; environment variable</span><br><span class="line">     during execution</span><br><span class="line">   - add LIBDIR to the &#96;LD_RUN_PATH&#39; environment variable</span><br><span class="line">     during linking</span><br><span class="line">   - use the &#96;-Wl,--rpath -Wl,LIBDIR&#39; linker flag</span><br><span class="line">   - have your system administrator add LIBDIR to &#96;&#x2F;etc&#x2F;ld.so.conf&#39;</span><br><span class="line"></span><br><span class="line">See any operating system documentation about shared libraries for</span><br><span class="line">more information, such as the ld(1) and ld.so(8) manual pages.</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">Build complete.</span><br><span class="line">Don&#39;t forget to run &#39;make test&#39;.</span><br><span class="line"></span><br><span class="line">Installing shared extensions:     &#x2F;usr&#x2F;local&#x2F;php73&#x2F;lib&#x2F;php&#x2F;extensions&#x2F;no-debug-zts-20180731&#x2F;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/web/blog/categories/php/">php</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/web/blog/tags/php/">php</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="https://hzjoyous.github.io/web/blog/2018/10/27/php/php_001_%E5%AE%89%E8%A3%85/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="hzjoyous.github.io/web/blog">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/web/blog/categories/c/">c</a><small>11</small></li>
+  
+    <li><a href="/web/blog/categories/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/node/">node</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/other/">other</a><small>14</small></li>
+  
+    <li><a href="/web/blog/categories/php/">php</a><small>23</small></li>
+  
+    <li><a href="/web/blog/categories/python/">python</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/tool/">tool</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/web/blog/tags/blog/">blog</a><small>3</small></li>
+  
+    <li><a href="/web/blog/tags/c/">c</a><small>11</small></li>
+  
+    <li><a href="/web/blog/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/http/">http</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/java/">java</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/mysql/">mysql</a><small>2</small></li>
+  
+    <li><a href="/web/blog/tags/node/">node</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/other/">other</a><small>14</small></li>
+  
+    <li><a href="/web/blog/tags/php/">php</a><small>23</small></li>
+  
+    <li><a href="/web/blog/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/tool/">tool</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2019 hzjoyous
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/web/blog/js/jquery-3.4.1.min.js"></script>
+
+<script src="/web/blog/js/jquery.imagesloaded.min.js"></script>
+<script src="/web/blog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/web/blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/web/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

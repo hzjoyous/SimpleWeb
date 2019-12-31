@@ -1,0 +1,270 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  
+  <title>webpack 有感 | biubiubiu~</title>
+  <meta name="author" content="hzjoyous">
+  
+  <meta name="description" content="明天就要回乡了，抓紧看了下书（其实是被子都寄走了，晚上睡觉不舒服）">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="webpack 有感"/>
+  <meta property="og:site_name" content="biubiubiu~"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/web/blog/favicon.png" rel="icon">
+  <link rel="alternate" href="/web/blog/atom.xml" title="biubiubiu~" type="application/atom+xml">
+  <link rel="stylesheet" href="/web/blog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/web/blog/">biubiubiu~</a></h1>
+  <h2><a href="/web/blog/">快乐~</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/web/blog/">Home</a></li>
+    
+      <li><a href="/web/blog/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-other/webpack有感" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2019-06-28T15:25:00.000Z"><a href="/web/blog/2019/06/28/other/webpack有感/">2019-06-28</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">webpack 有感</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>明天就要回乡了，抓紧看了下书（其实是被子都寄走了，晚上睡觉不舒服）</p>
+<a id="more"></a>
+
+<p>从B站上看了一下webpack相关的教程，快看完的时候突然发现了另个角度和后端工具对标的地方（以前只是对标了一下composer和npm，这次比较细致）</p>
+<table>
+<thead>
+<tr>
+<th>node</th>
+<th>php</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>前端原生撸代码（这个阶段还没有用到node）</td>
+<td>原生撸代码</td>
+</tr>
+<tr>
+<td>使用node+npm</td>
+<td>使用composer</td>
+</tr>
+<tr>
+<td>npm script</td>
+<td>composer script</td>
+</tr>
+<tr>
+<td>使用了 node 的模块加载</td>
+<td>使用由composer实现的psr4自动加载</td>
+</tr>
+<tr>
+<td>以下为模块和另一侧弱对标</td>
+<td>以下为模块和另一侧弱对标</td>
+</tr>
+<tr>
+<td>使用webpack</td>
+<td>使用了ioc模块</td>
+</tr>
+<tr>
+<td>使用了sacc-load</td>
+<td>使用了request</td>
+</tr>
+<tr>
+<td>使用了axias</td>
+<td>使用guzzlehttp</td>
+</tr>
+<tr>
+<td>使用babel</td>
+<td>使用doctrine/annotations</td>
+</tr>
+</tbody></table>
+<p>经过上诉模块的组合知乎前端的代码变得风格不同于原生的html开发，同时右侧的php代码也变得不同于原生的php代码，左侧隔离了原生网络请求，大量原生html，以及对css语法，js语法的一定改变，右侧则是更改由直接写代码变为控制器代码，$_REQUEST变成了request类，curl变成了封装好的httpclient，语法上也加强了注释对代码的影响，增加更多的功能，如果右侧加上了doctrine/orm 则更进一步对数据库操作进行了隔离，至此编码层面上既有非原生php语法的补充又有新增模块的全局函数和对底层的高度封装，从这一角度来看，虽然前端的编码改变也好，辅助的工具也好，和后端技术的代一定成都上也大同小异，不同的地方也就是给人的感受把，作为一个phper从原生phper-&gt;使用composer-&gt;使用框架因为处于渐进所以对于代码的写法感受较为温和，而前端代码由于直接从原生看到了使用webpack的写法，所以感觉跨度比较大。但是仔细想一想其实都是经过长时间迭代对工具的高度封装所得。尤其是一些同级语法分析器（用php的实现的对php语法的分析器和用js实现的对js语法的分析器）更是让工具以及库的使用更加巧妙（这里指的是对语言本身语法的改变）。</p>
+<p>不过语法的改变倒是挺有意思的事情，（php的语法分析库大多被引来制作静态检测）,scss,styl,twig,smarty(模板大多用的正则其实不应该算在这里面，但是从使用角度上来说又是一种语法的扩充)，<br><code>“计算机科学领域的任何问题都可以通过增加一个间接的中间层来解决” “Any problem in computer science can be solved by anther layer of indirection.”</code></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/web/blog/categories/other/">other</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/web/blog/tags/other/">other</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="https://hzjoyous.github.io/web/blog/2019/06/28/other/webpack%E6%9C%89%E6%84%9F/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="hzjoyous.github.io/web/blog">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/web/blog/categories/c/">c</a><small>11</small></li>
+  
+    <li><a href="/web/blog/categories/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/node/">node</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/other/">other</a><small>14</small></li>
+  
+    <li><a href="/web/blog/categories/php/">php</a><small>23</small></li>
+  
+    <li><a href="/web/blog/categories/python/">python</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/tool/">tool</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/web/blog/tags/blog/">blog</a><small>3</small></li>
+  
+    <li><a href="/web/blog/tags/c/">c</a><small>11</small></li>
+  
+    <li><a href="/web/blog/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/http/">http</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/java/">java</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/mysql/">mysql</a><small>2</small></li>
+  
+    <li><a href="/web/blog/tags/node/">node</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/other/">other</a><small>14</small></li>
+  
+    <li><a href="/web/blog/tags/php/">php</a><small>23</small></li>
+  
+    <li><a href="/web/blog/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/tool/">tool</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2019 hzjoyous
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/web/blog/js/jquery-3.4.1.min.js"></script>
+
+<script src="/web/blog/js/jquery.imagesloaded.min.js"></script>
+<script src="/web/blog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/web/blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/web/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

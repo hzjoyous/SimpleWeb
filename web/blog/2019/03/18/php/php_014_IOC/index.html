@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  
+  <title>PHP[014]:IOC(依赖反转控制容器) | biubiubiu~</title>
+  <meta name="author" content="hzjoyous">
+  
+  <meta name="description" content="123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="PHP[014]:IOC(依赖反转控制容器)"/>
+  <meta property="og:site_name" content="biubiubiu~"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/web/blog/favicon.png" rel="icon">
+  <link rel="alternate" href="/web/blog/atom.xml" title="biubiubiu~" type="application/atom+xml">
+  <link rel="stylesheet" href="/web/blog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/web/blog/">biubiubiu~</a></h1>
+  <h2><a href="/web/blog/">快乐~</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/web/blog/">Home</a></li>
+    
+      <li><a href="/web/blog/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-php/php_014_IOC" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2019-03-18T07:17:57.000Z"><a href="/web/blog/2019/03/18/php/php_014_IOC/">2019-03-18</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">PHP[014]:IOC(依赖反转控制容器)</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span></span></span><br><span class="line"><span class="comment"> * ioc</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Container</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> $binds;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> $instances;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">bind</span><span class="params">($abstract, $concrete)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> ($concrete <span class="keyword">instanceof</span> Closure) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;binds[$abstract] = $concrete;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;instances[$abstract] = $concrete;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">make</span><span class="params">($abstract, $parameters = [])</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="keyword">$this</span>-&gt;instances[$abstract])) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;instances[$abstract];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        array_unshift($parameters, <span class="keyword">$this</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> call_user_func_array(<span class="keyword">$this</span>-&gt;binds[$abstract], $parameters);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Superman</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> $module;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(SuperModuleInterface $module)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;module = $module;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">man</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> $age;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;age = <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">SuperModuleInterface</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 超能力激活方法</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 任何一个超能力都得有该方法，并拥有一个参数</span></span><br><span class="line"><span class="comment">     *<span class="doctag">@param</span> array $target 针对目标，可以是一个或多个，自己或他人</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">activate</span><span class="params">(array $target)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * X-超能量</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XPower</span> <span class="keyword">implements</span> <span class="title">SuperModuleInterface</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">activate</span><span class="params">(array $target)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 这只是个例子。。具体自行脑补</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 终极炸弹 （就这么俗）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UltraBomb</span> <span class="keyword">implements</span> <span class="title">SuperModuleInterface</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">activate</span><span class="params">(array $target)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 这只是个例子。。具体自行脑补</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个容器（后面称作超级工厂）</span></span><br><span class="line">$container = <span class="keyword">new</span> Container();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 向该 超级工厂 添加 超人 的生产脚本</span></span><br><span class="line">$container-&gt;bind(<span class="string">'superman'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($container, $moduleName)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Superman($container-&gt;make($moduleName));</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 向该 超级工厂 添加 超能力模组 的生产脚本</span></span><br><span class="line">$container-&gt;bind(<span class="string">'xpower'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($container)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> XPower;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 同上</span></span><br><span class="line">$container-&gt;bind(<span class="string">'ultrabomb'</span>, <span class="function"><span class="keyword">function</span> <span class="params">($container)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> UltraBomb;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">$container-&gt;bind(<span class="string">'man'</span>, <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">var_dump($container);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ******************  华丽丽的分割线  **********************</span></span><br><span class="line"><span class="comment">// 开始启动生产</span></span><br><span class="line">$superman_1 = $container-&gt;make(<span class="string">'superman'</span>, [<span class="string">'xpower'</span>]);</span><br><span class="line">$superman_2 = $container-&gt;make(<span class="string">'superman'</span>, [<span class="string">'ultrabomb'</span>]);</span><br><span class="line">$superman_3 = $container-&gt;make(<span class="string">'superman'</span>, [<span class="string">'xpower'</span>]);</span><br><span class="line">$superman_4 = $concrete-&gt;make(<span class="string">'man'</span>);</span><br><span class="line"><span class="comment">// ...随意添加</span></span><br><span class="line"></span><br><span class="line">var_dump($superman_1, $superman_2, $superman_3);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/web/blog/categories/php/">php</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/web/blog/tags/php/">php</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="https://hzjoyous.github.io/web/blog/2019/03/18/php/php_014_IOC/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="hzjoyous.github.io/web/blog">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/web/blog/categories/c/">c</a><small>11</small></li>
+  
+    <li><a href="/web/blog/categories/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/node/">node</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/other/">other</a><small>14</small></li>
+  
+    <li><a href="/web/blog/categories/php/">php</a><small>23</small></li>
+  
+    <li><a href="/web/blog/categories/python/">python</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/tool/">tool</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/web/blog/tags/blog/">blog</a><small>3</small></li>
+  
+    <li><a href="/web/blog/tags/c/">c</a><small>11</small></li>
+  
+    <li><a href="/web/blog/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/http/">http</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/java/">java</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/mysql/">mysql</a><small>2</small></li>
+  
+    <li><a href="/web/blog/tags/node/">node</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/other/">other</a><small>14</small></li>
+  
+    <li><a href="/web/blog/tags/php/">php</a><small>23</small></li>
+  
+    <li><a href="/web/blog/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/tool/">tool</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2019 hzjoyous
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/web/blog/js/jquery-3.4.1.min.js"></script>
+
+<script src="/web/blog/js/jquery.imagesloaded.min.js"></script>
+<script src="/web/blog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/web/blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/web/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

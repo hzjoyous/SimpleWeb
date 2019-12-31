@@ -1,0 +1,230 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  
+  <title>面向对象随笔 | biubiubiu~</title>
+  <meta name="author" content="hzjoyous">
+  
+  <meta name="description" content="起初，“面向对象”是专指在程序设计中采用封装、继承、多态等设计方法看下面一段php代码
+12345678910111213141516&amp;lt;?phpfunction eat()&amp;#123;    echo &#39;eat&#39;;&amp;#125;function eatFood()&amp;#123;    eat();&amp;#125;function eatFood2()&amp;#123;    eat();    eat();&amp;#125;">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="面向对象随笔"/>
+  <meta property="og:site_name" content="biubiubiu~"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/web/blog/favicon.png" rel="icon">
+  <link rel="alternate" href="/web/blog/atom.xml" title="biubiubiu~" type="application/atom+xml">
+  <link rel="stylesheet" href="/web/blog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/web/blog/">biubiubiu~</a></h1>
+  <h2><a href="/web/blog/">快乐~</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/web/blog/">Home</a></li>
+    
+      <li><a href="/web/blog/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-other/面向对象杂谈" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2019-06-28T12:25:00.000Z"><a href="/web/blog/2019/06/28/other/面向对象杂谈/">2019-06-28</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">面向对象随笔</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <h1 id="起初，“面向对象”是专指在程序设计中采用封装、继承、多态等设计方法"><a href="#起初，“面向对象”是专指在程序设计中采用封装、继承、多态等设计方法" class="headerlink" title="起初，“面向对象”是专指在程序设计中采用封装、继承、多态等设计方法"></a>起初，“面向对象”是专指在程序设计中采用封装、继承、多态等设计方法</h1><p>看下面一段php代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eat</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'eat'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eatFood</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    eat();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eatFood2</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    eat();</span><br><span class="line">    eat();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>是不是和面向对象的继承封装多态差不多？虽然代码看着有点丑陋</p>
+<p>再举例一个 oop 里面的一个设计模式<code>观察者</code>,php中有<code>declare(ticks=1);</code>这样一种用法，（这个写法的孪生兄弟pcntl_signal_dispatch()不是这次的重点）,它表示每执行多少语句去执行一下<code>register_tick_function</code>注册的方法或检测<code>pcntl_signal</code>信号量，是不是很适合用来实现观察者，但观察者的实现多大都是主动通知更改的时候触发了observer，而非被监听者观察到状态变化，因为从实现上来说，每执行一句就要观察一下状态是不是有点费劲呀，之后就演变成了发布订阅，因为服务端的业务代码大多数时候并没有实现真正的观察者。但是真正意义的观察者也是存在的，从实现角度上来说我们常用的守护进程大多都可以理解为观察者的实现，起进程，监控进程，发现挂掉就重启。</p>
+<h1 id="圆形的太阳和圆形的眼睛有什么关系，游戏超级玛丽奥中山和云的其实是颜色不一样的图形他们又是什么关系"><a href="#圆形的太阳和圆形的眼睛有什么关系，游戏超级玛丽奥中山和云的其实是颜色不一样的图形他们又是什么关系" class="headerlink" title="圆形的太阳和圆形的眼睛有什么关系，游戏超级玛丽奥中山和云的其实是颜色不一样的图形他们又是什么关系"></a>圆形的太阳和圆形的眼睛有什么关系，游戏超级玛丽奥中山和云的其实是颜色不一样的图形他们又是什么关系</h1><p>许多人可能会说圆形是太阳的一个属性，山的型状和云的型状也是他们的属性，那太阳和眼睛存在关系码？云和山又有什么关系呢？很显然在这种地方组合的表现要更加明显。</p>
+<p>所以我个人认为面向对象并非一个完美的理论，而实一个阶段性的由开发人员长期开发得出来的经验总结</p>
+<h1 id="面向对象的缺点不包括-‘运行速度慢’"><a href="#面向对象的缺点不包括-‘运行速度慢’" class="headerlink" title="面向对象的缺点不包括 ‘运行速度慢’"></a>面向对象的缺点不包括 ‘运行速度慢’</h1><p>网上有人说面向对象的缺点里面包括了<code>运行速度慢</code>，这个观点简直就是放屁，因为面向对象的逻辑可以等价的转换为非面向对象的写法，所以无论是开发自己转换也好，还是语言底层自己转换也好，相同逻辑下效率是一样的，（个人反对因为现在计算机算力高，所以可以忽略某些问题，但面向对象本身是没有性能问题，即使有那也是编译器或解析器处理的问题，或编写语法转换器，所以这个缺点是不存在的，面向对象的缺点应该更多的观察它设计上的缺陷）。</p>
+<h1 id="设计非教条"><a href="#设计非教条" class="headerlink" title="设计非教条"></a>设计非教条</h1><p>如果不能优雅的实现设计模式，那么或者时机不到（没有合适的api，或者没有合适的库的支持（例如反射类推进了ioc,php词法分析推进了php编程上使用注解）），要么可能就是过于追求本本主义，走了弯路</p>
+<h1 id="人挪活，树挪死"><a href="#人挪活，树挪死" class="headerlink" title="人挪活，树挪死"></a>人挪活，树挪死</h1>
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/web/blog/categories/c/">c</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/web/blog/tags/c/">c</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="https://hzjoyous.github.io/web/blog/2019/06/28/other/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%9D%82%E8%B0%88/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="hzjoyous.github.io/web/blog">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/web/blog/categories/c/">c</a><small>11</small></li>
+  
+    <li><a href="/web/blog/categories/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/node/">node</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/other/">other</a><small>14</small></li>
+  
+    <li><a href="/web/blog/categories/php/">php</a><small>23</small></li>
+  
+    <li><a href="/web/blog/categories/python/">python</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/tool/">tool</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/web/blog/tags/blog/">blog</a><small>3</small></li>
+  
+    <li><a href="/web/blog/tags/c/">c</a><small>11</small></li>
+  
+    <li><a href="/web/blog/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/http/">http</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/java/">java</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/mysql/">mysql</a><small>2</small></li>
+  
+    <li><a href="/web/blog/tags/node/">node</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/other/">other</a><small>14</small></li>
+  
+    <li><a href="/web/blog/tags/php/">php</a><small>23</small></li>
+  
+    <li><a href="/web/blog/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/tool/">tool</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2019 hzjoyous
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/web/blog/js/jquery-3.4.1.min.js"></script>
+
+<script src="/web/blog/js/jquery.imagesloaded.min.js"></script>
+<script src="/web/blog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/web/blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/web/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

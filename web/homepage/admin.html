@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>你快乐吗~</title>
+    <link rel="shortcut icon" href="public/favicon.ico" />
+    <style>
+        * {
+            text-decoration: none;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+        }
+
+        #main .left {
+            width: 10%;
+            background: yellowgreen;
+            float: left;
+        }
+
+        #main .right {
+            width: 90%;
+            background: cornflowerblue;
+            float: left;
+        }
+
+        #main .left .userInfo {
+            width: 100%;
+            height: 200px;
+            background: border-box;
+        }
+
+        #main .left .toolItem {
+            width: 100%;
+            height: 50px;
+            background: darkmagenta;
+        }
+
+        .clear {
+            clear: both;
+            font-size: 0;
+            height: 1%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div id="main">
+            <div class="left">
+                <div id="userInfo" class="userInfo">userInfo</div>
+                <div id="item1" class="toolItem" v-on:click="onClickItem1">toolItem</div>
+                <div id="item2" class="toolItem" v-on:click="onClickItem2">toolItem</div>
+                <div id="item3" class="toolItem" v-on:click="onClickItem3">toolItem</div>
+                <div id="item4" class="toolItem" v-on:click="onClickItem4">toolItem</div>
+                <div id="item5" class="toolItem" v-on:click="onClickItem5">toolItem</div>
+                <div id="item6" class="toolItem" v-on:click="onClickItem6">toolItem</div>
+            </div>
+            <div class="right">
+                <div v-if="checkType==='item1'">
+                    <h4>这是item1</h4>
+                    <input type="text" name="email" />
+                    <input type="text" name="email" />
+                    <input type="text" name="email" />
+                    <input type="text" name="email" />
+                    <input type="text" name="email" />
+                    <input type="text" name="email" />
+                    <input type="text" name="email" />
+                    <input type="text" name="email" />
+                    <input type="text" name="email" />
+                    <input type="text" name="email" />
+                    <input type="text" name="email" />
+                    <input type="text" name="email" />
+                </div>
+                <div v-if="checkType==='item2'">
+                    <h4>这是item2</h4>
+                    <input type="text" name="email" />
+                </div>
+                <div v-if="checkType==='item3'">
+                    <h4>这是item3</h4>
+                    <input type="text" name="email" />
+                </div>
+                <div v-if="checkType==='item4'">
+                    <h4>这是item4</h4>
+                    <input type="text" name="email" />
+                </div>
+                <div v-if="checkType==='item5'">
+                    <h4>这是item5</h4>
+                    <input type="text" name="email" />
+                </div>
+                <div v-if="checkType==='item'">6
+                    <h4>这是item6</h4>
+                    <input type="text" name="email" />
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                checkType: 'item1'
+            },
+            methods: {
+                onClickItem1: function () {
+                    this.checkType = 'item1';
+                },
+                onClickItem2: function () {
+                    this.checkType = 'item2';
+                },
+                onClickItem3: function () {
+                    this.checkType = 'item3';
+                },
+                onClickItem4: function () {
+                    this.checkType = 'item4';
+                },
+                onClickItem5: function () {
+                    this.checkType = 'item5';
+                },
+                onClickItem6: function () {
+                    this.checkType = 'item6';
+                },
+            }
+
+        });
+    </script>
+</body>
+
+</html>

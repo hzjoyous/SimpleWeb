@@ -1,0 +1,276 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 7 | biubiubiu~</title>
+  <meta name="author" content="hzjoyous">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="biubiubiu~"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/web/blog/favicon.png" rel="icon">
+  <link rel="alternate" href="/web/blog/atom.xml" title="biubiubiu~" type="application/atom+xml">
+  <link rel="stylesheet" href="/web/blog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/web/blog/">biubiubiu~</a></h1>
+  <h2><a href="/web/blog/">快乐~</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/web/blog/">Home</a></li>
+    
+      <li><a href="/web/blog/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article id="post-c/C_002_01背包" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2017-06-02T07:19:09.000Z"><a href="/web/blog/2017/06/02/c/C_002_01背包/">2017-06-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/web/blog/2017/06/02/c/C_002_01背包/">c/c++[002]:01背包</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>(背包问题?)[<a href="https://acm.sdut.edu.cn/onlinejudge2/index.php/Home/Index/problemdetail/pid/3092.html]" target="_blank" rel="noopener">https://acm.sdut.edu.cn/onlinejudge2/index.php/Home/Index/problemdetail/pid/3092.html]</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//std::ios::sync_with_stdio(false);</span></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">int</span> sum ;</span><br><span class="line">    <span class="keyword">int</span> w[<span class="number">2</span>][<span class="number">20000</span>];</span><br><span class="line">    <span class="keyword">int</span> sV[<span class="number">20000</span>];</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; n &gt;&gt; sum)</span><br><span class="line">    &#123;</span><br><span class="line">        i = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(i &lt;= n)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;w[<span class="number">0</span>][i] &gt;&gt; w[<span class="number">1</span>][i];</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">memset</span>(sV,<span class="number">0</span>,<span class="keyword">sizeof</span>(sV));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j&lt;= n ; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>( <span class="keyword">int</span> jj = sum ; jj &gt;= w[<span class="number">0</span>][j]; jj -- )</span><br><span class="line">            &#123;</span><br><span class="line">                sV[jj] = max(</span><br><span class="line">                         sV[jj],</span><br><span class="line">                         sV[jj-w[<span class="number">0</span>][j]]+w[<span class="number">1</span>][j]</span><br><span class="line">                         );</span><br><span class="line">            &#125;</span><br><span class="line"><span class="comment">//            for(int z = 0; z&lt;=sum ;z++)&#123;</span></span><br><span class="line">  <span class="comment">//              cout&lt;&lt;sV[z]&lt;&lt;"\t";</span></span><br><span class="line">    <span class="comment">//        &#125;</span></span><br><span class="line">      <span class="comment">//      cout&lt;&lt;endl;</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt; sV[sum]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span> ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-c/C_001_start" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2017-05-25T07:18:09.000Z"><a href="/web/blog/2017/05/25/c/C_001_start/">2017-05-25</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/web/blog/2017/05/25/c/C_001_start/">c/c++[001]:start</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <h1 id="cin-cout-scanf-printf"><a href="#cin-cout-scanf-printf" class="headerlink" title="cin cout scanf printf"></a>cin cout scanf printf</h1><p>作为一个学校课程跳过c语言的萌新，这次重新学习c/c++从源头上明白这两种不同的输入输出还是很有必要</p>
+<p>scanf()是C语言中的一个输入函数。与printf函数一样，都被声明在头文件stdio.h里，因此在使用scanf函数时要加上#include &lt;stdio.h&gt;。（在有一些实现中，printf函数与scanf函数在使用时可以不使用预编译命令#include &lt;stdio.h&gt;。）它是格式输入函数，即按用户指定的格式从键盘上把数据输入到指定的变量之中。</p>
+<table>
+<thead>
+<tr>
+<th>规定符</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>%d</td>
+<td>十进制有符号整数</td>
+</tr>
+<tr>
+<td>%u</td>
+<td>十进制无符号整数</td>
+</tr>
+<tr>
+<td>%f</td>
+<td>浮点数</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>字符串</td>
+</tr>
+<tr>
+<td>%c</td>
+<td>单个字符</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>指针的值</td>
+</tr>
+<tr>
+<td>%e</td>
+<td>指数形式的浮点数</td>
+</tr>
+<tr>
+<td>%x, %X</td>
+<td>无符号以十六进制表示的整数</td>
+</tr>
+<tr>
+<td>%o</td>
+<td>无符号以八进制表示的整数</td>
+</tr>
+<tr>
+<td>%g</td>
+<td>把输出的值按照%e或者%f类型中输出长度较小的方式输出</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>输出地址符</td>
+</tr>
+<tr>
+<td>%lu</td>
+<td>32位无符号整数</td>
+</tr>
+<tr>
+<td>%llu</td>
+<td>64位无符号整数</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/web/blog/page/6/" class="alignleft prev">Prev</a>
+  
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="hzjoyous.github.io/web/blog">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/web/blog/categories/c/">c</a><small>11</small></li>
+  
+    <li><a href="/web/blog/categories/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/node/">node</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/other/">other</a><small>14</small></li>
+  
+    <li><a href="/web/blog/categories/php/">php</a><small>23</small></li>
+  
+    <li><a href="/web/blog/categories/python/">python</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/tool/">tool</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/web/blog/tags/blog/">blog</a><small>3</small></li>
+  
+    <li><a href="/web/blog/tags/c/">c</a><small>11</small></li>
+  
+    <li><a href="/web/blog/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/http/">http</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/java/">java</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/mysql/">mysql</a><small>2</small></li>
+  
+    <li><a href="/web/blog/tags/node/">node</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/other/">other</a><small>14</small></li>
+  
+    <li><a href="/web/blog/tags/php/">php</a><small>23</small></li>
+  
+    <li><a href="/web/blog/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/tool/">tool</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2019 hzjoyous
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/web/blog/js/jquery-3.4.1.min.js"></script>
+
+<script src="/web/blog/js/jquery.imagesloaded.min.js"></script>
+<script src="/web/blog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/web/blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/web/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

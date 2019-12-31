@@ -1,0 +1,363 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  
+  <title>c/c++[00X]:KMP | biubiubiu~</title>
+  <meta name="author" content="hzjoyous">
+  
+  <meta name="description" content="kmp 的 next 串分析
+
+
+
+a
+b
+a
+a
+b
+c
+a
+c
+
+
+
+0
+1
+1
+2
+2
+3
+1
+2
+
+
+
+
+
+a
+b
+a
+a
+b
+c
+a
+c
+
+
+
+‘’
+‘a’
+‘ab’
+‘aba’
+‘abaa’
+‘abaab’
+‘abaabc’
+‘abaabca’
+
+
+‘’
+‘ax’
+‘abx’
+‘abax’
+‘abaax’
+‘abaabx’
+‘abaabax’
+‘abaabcx’
+
+
+‘’
+‘x’
+‘x’
+‘ax’
+‘ax’
+‘abx’
+‘x’
+‘ax’">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="c/c++[00X]:KMP"/>
+  <meta property="og:site_name" content="biubiubiu~"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/web/blog/favicon.png" rel="icon">
+  <link rel="alternate" href="/web/blog/atom.xml" title="biubiubiu~" type="application/atom+xml">
+  <link rel="stylesheet" href="/web/blog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/web/blog/">biubiubiu~</a></h1>
+  <h2><a href="/web/blog/">快乐~</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/web/blog/">Home</a></li>
+    
+      <li><a href="/web/blog/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-c/C_KMP" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2019-07-02T06:18:09.000Z"><a href="/web/blog/2019/07/02/c/C_KMP/">2019-07-02</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">c/c++[00X]:KMP</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>kmp 的 next 串分析</p>
+<table>
+<thead>
+<tr>
+<th>a</th>
+<th>b</th>
+<th>a</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>a</th>
+<th>c</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>a</th>
+<th>b</th>
+<th>a</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>a</th>
+<th>c</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>‘’</td>
+<td>‘a’</td>
+<td>‘ab’</td>
+<td>‘aba’</td>
+<td>‘abaa’</td>
+<td>‘abaab’</td>
+<td>‘abaabc’</td>
+<td>‘abaabca’</td>
+</tr>
+<tr>
+<td>‘’</td>
+<td>‘ax’</td>
+<td>‘abx’</td>
+<td>‘abax’</td>
+<td>‘abaax’</td>
+<td>‘abaabx’</td>
+<td>‘abaabax’</td>
+<td>‘abaabcx’</td>
+</tr>
+<tr>
+<td>‘’</td>
+<td>‘x’</td>
+<td>‘x’</td>
+<td>‘ax’</td>
+<td>‘ax’</td>
+<td>‘abx’</td>
+<td>‘x’</td>
+<td>‘ax’</td>
+</tr>
+</tbody></table>
+<a id="more"></a>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 教材 数据结构 c 语言伪代码</span></span><br><span class="line"><span class="comment"> * void get_next(SString T,int next[])</span></span><br><span class="line"><span class="comment"> * &#123;</span></span><br><span class="line"><span class="comment"> *      i = 1; next[1] = 0; j = 0;</span></span><br><span class="line"><span class="comment"> *      while(i&lt;T[0])&#123;</span></span><br><span class="line"><span class="comment"> *          if(j==0 || T[i] == T[j])</span></span><br><span class="line"><span class="comment"> *          &#123;</span></span><br><span class="line"><span class="comment"> *              ++i;</span></span><br><span class="line"><span class="comment"> *              ++j;</span></span><br><span class="line"><span class="comment"> *              next[i]=j;</span></span><br><span class="line"><span class="comment"> *          &#125;</span></span><br><span class="line"><span class="comment"> *          else</span></span><br><span class="line"><span class="comment"> *          &#123;</span></span><br><span class="line"><span class="comment"> *              j = next[j]</span></span><br><span class="line"><span class="comment"> *          &#125;</span></span><br><span class="line"><span class="comment"> *      &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 下述代码为正确的可执行php代码，与上述伪代码不一样的是，$str 的字符串下标是从0 开始，所以将$i,$j的匹配位置迁移1位，</span></span><br><span class="line"><span class="comment"> * 因为next也是从0开始存储所以循环应在 $i&lt;$lenght-1开始</span></span><br><span class="line"><span class="comment"> * （next[0]作为起点未在循环内赋值，循环内赋值皆为$i+1的下表，故可以做到将next[0]~next[$lenght-1]全部赋值成功 ,）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getNext_success</span><span class="params">($str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $next = [];</span><br><span class="line">    $lenght = strlen($str);</span><br><span class="line">    $next[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">    $i = <span class="number">0</span>;</span><br><span class="line">    $j = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span> ($i &lt; $lenght<span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> ($j === <span class="number">-1</span> || $str[$i] === $str[$j]) &#123;</span><br><span class="line">            $i += <span class="number">1</span>;</span><br><span class="line">            $j += <span class="number">1</span>;</span><br><span class="line">            $next[$i] = $j;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $j = $next[$j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span> ($next <span class="keyword">as</span> $num) &#123;</span><br><span class="line">        <span class="keyword">echo</span> $num . <span class="string">"\t"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 教材的字符串下表 1 开始 0 下标代表着该字符串长度（这好像不是c吧(lll￢ω￢)）</span></span><br><span class="line"><span class="comment"> * 所以第一个函数的错误发生于j=0 , 因为j=0下表在下述代码中是字符串的首位所以如果用j=0作为j的初始值则会导致少匹配一位，</span></span><br><span class="line"><span class="comment"> * 导致实际使用的字串为s[1]~s[n]</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getNext_error</span><span class="params">($str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $next = [];</span><br><span class="line">    $lenght = strlen($str);</span><br><span class="line">    $next[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">    $i = <span class="number">1</span>;</span><br><span class="line">    $j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> ($i &lt; $lenght) &#123;</span><br><span class="line">        <span class="keyword">if</span> ($j === <span class="number">0</span> || $str[$i] === $str[$j]) &#123;</span><br><span class="line">            $j += <span class="number">1</span>;</span><br><span class="line">            $i += <span class="number">1</span>;</span><br><span class="line">            $next[$i] = $j;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $j = $next[$j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">foreach</span> ($next <span class="keyword">as</span> $num) &#123;</span><br><span class="line">        <span class="keyword">echo</span> $num . <span class="string">"\t"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 这是第二个错误，他的输出的next 为  0       1       2       3       4       5       6       7 </span></span><br><span class="line"><span class="comment"> * 虽然起点为$i=0; $j =-1;但是由于第一次匹配未能成功导致将$j=0,致使$i=0,$j=0开始匹配，</span></span><br><span class="line"><span class="comment"> * 而kmp中next每次循环所求是前缀，</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getNext_error2</span><span class="params">($str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $next = [];</span><br><span class="line">    $lenght = strlen($str);</span><br><span class="line">    $next[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    $i = <span class="number">0</span>;</span><br><span class="line">    $j = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span> ($i &lt; $lenght<span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> ($j === <span class="number">0</span> || $str[$i] === $str[$j]) &#123;</span><br><span class="line">            $i += <span class="number">1</span>;</span><br><span class="line">            $j += <span class="number">1</span>;</span><br><span class="line">            $next[$i] = $j;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            $j = $next[$j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span> ($next <span class="keyword">as</span> $num) &#123;</span><br><span class="line">        <span class="keyword">echo</span> $num . <span class="string">"\t"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"\n"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$str4kmp = <span class="string">'abaabcac'</span>;</span><br><span class="line">$str4kmp =<span class="string">'11111111'</span>;</span><br><span class="line">getNext_error($str4kmp);</span><br><span class="line">getNext_error2($str4kmp);</span><br><span class="line">getNext_success($str4kmp);</span><br></pre></td></tr></table></figure>
+
+<p>c语言版本</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> next_ac[<span class="number">1000005</span>];</span><br><span class="line"><span class="keyword">char</span> s1[<span class="number">1000005</span>];</span><br><span class="line"><span class="keyword">char</span> s2[<span class="number">1000005</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getNext</span><span class="params">(<span class="keyword">char</span> *s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(next_ac,<span class="number">-1</span>,<span class="keyword">sizeof</span>(next_ac));</span><br><span class="line">    <span class="keyword">int</span> sl = <span class="built_in">strlen</span>(s);</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    sl-1 这里循环次数</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">while</span>(i&lt;sl<span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(j== <span class="number">-1</span> || s[i] == s[j])</span><br><span class="line">        &#123;</span><br><span class="line">            i+=<span class="number">1</span>;</span><br><span class="line">            j+=<span class="number">1</span>;</span><br><span class="line">            next_ac[i] = j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            j = next_ac[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">kmp</span><span class="params">(<span class="keyword">char</span> *s1,<span class="keyword">char</span> *s2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sl1 = <span class="built_in">strlen</span>(s1);</span><br><span class="line">    <span class="keyword">int</span> sl2 = <span class="built_in">strlen</span>(s2);</span><br><span class="line">    getNext(s2);</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;sl1 &amp;&amp; j&lt;sl2)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(j==<span class="number">-1</span>||s1[i]==s2[j])</span><br><span class="line">        &#123;</span><br><span class="line">            j++;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            j = next_ac[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(j==sl2)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> i-j+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="keyword">int</span> z = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;s1)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;s2;</span><br><span class="line">        z= kmp(s1,s2);</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;z&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/***************************************************</span></span><br><span class="line"><span class="comment">User name: loop0875</span></span><br><span class="line"><span class="comment">Result: Accepted</span></span><br><span class="line"><span class="comment">Take time: 72ms</span></span><br><span class="line"><span class="comment">Take Memory: 1408KB</span></span><br><span class="line"><span class="comment">Submit time: 2019-07-02 14:31:44</span></span><br><span class="line"><span class="comment">****************************************************/</span></span><br></pre></td></tr></table></figure>
+
+<p>过程中，有一趟代码我给把 = 写成了 == 导致next全变成了 -1，但是对于测试数据缺没问题，提交wa，其实如果next都为-1的情况下，kmp的部分在某些情况下可以正常运行，只要本身不存在回溯可以成功的情况，是可以运行的，因为next全是-1，这就导致一旦出错就会把字串从头开始匹配，但是被匹配串缺还保持当前位置导致的当然问题导致的原因还是因为粗心导致的</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getNext</span><span class="params">(<span class="keyword">char</span> *s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">memset</span>(next_ac,<span class="number">-1</span>,<span class="keyword">sizeof</span>(next_ac));</span><br><span class="line">    <span class="keyword">int</span> sl = <span class="built_in">strlen</span>(s);</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> j = <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    sl-1 这里循环次数</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">while</span>(i&lt;sl<span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(j== <span class="number">-1</span> || s[i] == s[j])</span><br><span class="line">        &#123;</span><br><span class="line">            i+=<span class="number">1</span>;</span><br><span class="line">            j+=<span class="number">1</span>;</span><br><span class="line">            <span class="comment">/**************这里是出错的地点********************/</span></span><br><span class="line">            next_ac[i] == j;</span><br><span class="line">            <span class="comment">/**********************************/</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            j = next_ac[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/web/blog/categories/c/">c</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/web/blog/tags/c/">c</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="https://hzjoyous.github.io/web/blog/2019/07/02/c/C_KMP/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="hzjoyous.github.io/web/blog">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/web/blog/categories/c/">c</a><small>11</small></li>
+  
+    <li><a href="/web/blog/categories/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/node/">node</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/other/">other</a><small>14</small></li>
+  
+    <li><a href="/web/blog/categories/php/">php</a><small>23</small></li>
+  
+    <li><a href="/web/blog/categories/python/">python</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/tool/">tool</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/web/blog/tags/blog/">blog</a><small>3</small></li>
+  
+    <li><a href="/web/blog/tags/c/">c</a><small>11</small></li>
+  
+    <li><a href="/web/blog/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/http/">http</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/java/">java</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/mysql/">mysql</a><small>2</small></li>
+  
+    <li><a href="/web/blog/tags/node/">node</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/other/">other</a><small>14</small></li>
+  
+    <li><a href="/web/blog/tags/php/">php</a><small>23</small></li>
+  
+    <li><a href="/web/blog/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/tool/">tool</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2019 hzjoyous
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/web/blog/js/jquery-3.4.1.min.js"></script>
+
+<script src="/web/blog/js/jquery.imagesloaded.min.js"></script>
+<script src="/web/blog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/web/blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/web/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

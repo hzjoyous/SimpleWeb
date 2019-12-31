@@ -1,0 +1,534 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 6 | biubiubiu~</title>
+  <meta name="author" content="hzjoyous">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="biubiubiu~"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/web/blog/favicon.png" rel="icon">
+  <link rel="alternate" href="/web/blog/atom.xml" title="biubiubiu~" type="application/atom+xml">
+  <link rel="stylesheet" href="/web/blog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/web/blog/">biubiubiu~</a></h1>
+  <h2><a href="/web/blog/">快乐~</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/web/blog/">Home</a></li>
+    
+      <li><a href="/web/blog/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article id="post-php/php_004_laravel" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2018-10-27T01:48:36.000Z"><a href="/web/blog/2018/10/27/php/php_004_laravel/">2018-10-27</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/web/blog/2018/10/27/php/php_004_laravel/">PHP[004]:laravel 5.5</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">运行 Laravel Mix</span><br><span class="line">Laravel Mix 一款前端任务自动化管理工具，使用了工作流的模式对制定好的任务依次执行。Mix 提供了简洁流畅的 API，让你能够为你的 Laravel 应用定义 Webpack 编译任务。Mix 支持许多常见的 CSS 与 JavaScript 预处理器，通过简单的调用，你可以轻松地管理前端资源。</span><br><span class="line"></span><br><span class="line">使用 Mix 很简单，首先你需要使用以下命令安装 npm 依赖即可。我们将使用 Yarn 来安装依赖，在这之前，因为国内的网络原因，我们还需为 Yarn 配置安装加速：</span><br><span class="line"></span><br><span class="line">$ yarn config set registry https:&#x2F;&#x2F;registry.npm.taobao.org</span><br><span class="line">使用 Yarn 安装依赖：</span><br><span class="line"></span><br><span class="line">$ yarn install</span><br><span class="line">安装成功后，运行以下命令即可：</span><br><span class="line"></span><br><span class="line">$ npm run watch-poll</span><br><span class="line">watch-poll 会在你的终端里持续运行，监控 resources 文件夹下的资源文件是否有发生改变。在 watch-poll 命令运行的情况下，一旦资源文件发生变化，Webpack 会自动重新编译。</span><br><span class="line"></span><br><span class="line">注意：在后面的课程中，我们需要保证 npm run watch-poll 一直处在执行状态中。</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">7.</span> 线上部署须知</span><br><span class="line">在开发环境中，我们为了测试方便，直接在命令行里调用 artisan horizon 进行队列监控。然而在生产环境中，我们需要配置一个进程管理工具来监控 artisan horizon 命令的执行，以便在其意外退出时自动重启。当服务器部署新代码时，需要终止当前 Horizon 主进程，然后通过进程管理工具来重启，从而使用最新的代码。</span><br><span class="line"></span><br><span class="line">简而言之，生产环境下使用队列需要注意以下两个问题：</span><br><span class="line"></span><br><span class="line">使用 Supervisor 进程工具进行管理，配置和使用请参照 文档 进行配置；</span><br><span class="line">每一次部署代码时，需 artisan horizon:terminate 然后再 artisan horizon 重新加载代码。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-php/php_002_环境怪谈" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2018-10-27T01:48:35.000Z"><a href="/web/blog/2018/10/27/php/php_002_环境怪谈/">2018-10-27</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/web/blog/2018/10/27/php/php_002_环境怪谈/">PHP[002]:More PHP</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <h1 id="more-php"><a href="#more-php" class="headerlink" title="more php"></a>more php</h1><blockquote>
+<p> 虽然 wsl 可以模拟 linux 环境，但是请不要用 wsl 作为一种开发环境进行使用，而是作为一个工具系统</p>
+</blockquote>
+<h3 id="一致的环境"><a href="#一致的环境" class="headerlink" title="一致的环境"></a>一致的环境</h3><ul>
+<li>linux 版本 &amp; 配置</li>
+<li>nginx 版本 &amp; 配置</li>
+<li>mysql 版本 &amp; 配置</li>
+<li>php 版本 &amp; 配置</li>
+<li>composer 版本（这个也很重要）</li>
+</ul>
+<p>一致的环境体现在三个方面，系统（linux/win)是否一直，依赖软件(nginx/mysql/other)是否一致，解析器（php）版本及该使用该解析器所做的软件（composer）版本是否一致。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">composer update</span><br><span class="line">composer install</span><br><span class="line">composer update --no-dev</span><br></pre></td></tr></table></figure>
+
+<p>Deployer 一个环境部署工具</p>
+<h1 id="about-use"><a href="#about-use" class="headerlink" title="about use"></a>about use</h1><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ($needBacktrace != <span class="number">0</span>) &#123;</span><br><span class="line">    ob_start();</span><br><span class="line">    debug_print_backtrace($needBacktrace === <span class="number">2</span> ? <span class="number">1</span> : <span class="number">0</span>);</span><br><span class="line">    $trace = ob_get_contents();</span><br><span class="line">    ob_end_clean();</span><br><span class="line">    $msg = $msg . <span class="string">'##  trace:'</span> . $trace;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-php/php_002_Standard" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2018-10-27T01:48:34.000Z"><a href="/web/blog/2018/10/27/php/php_002_Standard/">2018-10-27</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/web/blog/2018/10/27/php/php_002_Standard/">PHP[002]:Standard</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>psr</p>
+</blockquote>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-php/php_001_安装" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2018-10-27T01:48:33.000Z"><a href="/web/blog/2018/10/27/php/php_001_安装/">2018-10-27</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/web/blog/2018/10/27/php/php_001_安装/">PHP[001]:INSTALL</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>ubuntu</p>
+<p>ubuntu 中软件的卸载方法：</p>
+<p>1.apt方式安装：(相应的文件夹有相关的软件，先进入到软件的文件夹)<br>  普通安装： sudo apt-get install 软件名<br>  修复安装： sudo apt-get -f install 软件名<br>  重新安装： sudo apt-get –rreinstall install 软件名<br>　(一般是 .deb　格式)<br>2.dpkg 方式：<br>  1.普通安装：sudo dpkg -i package_name.deb<br>=====================================<br>如果软件的格式为 .rpm 格式包时，则<br>1.先安装　alien 和　fakeroot 这两个工具，<br> sudo apt-get install alien fakeroot<br>alien 把　.rpm 为　.deb 格式的文件</p>
+<ol>
+<li><p>将　.rpm 格式的文件转为 同文件名的　.deb<br>fakeroot alien xx.rpm<br>这样就可以按上面的方法安装了</p>
+<p>1.apt 方式：<br>a. 移除式卸载： apt-get remove 软件名<br>b. 清除式卸载： apt-get –purge remove 软件名 (同时清除配置)<br>c. 清除式卸载： apt-get –purge 软件名  (同时清除配置)</p>
+<p>2.dpkg 方式：<br>a. 移除式卸载：sudo dpkg dpkg_name<br>b. 清除式卸载：sudo -P dpkg_name</p>
+</li>
+</ol>
+<p>查看已经安装的软件名称：</p>
+<p>dpkg -l</p>
+<p>查找软件库中的软件<br>apt-cache search 正则表达式<br>或者<br>aptitude search 软件包（部分）<br>可以查看相关软件的名称　标志 i　表示已经安装</p>
+<p>apt-cache search php7</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">.&#x2F;configure \</span><br><span class="line">--prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;php73 \</span><br><span class="line">--exec-prefix&#x3D;&#x2F;usr&#x2F;local&#x2F;php73 \</span><br><span class="line">--bindir&#x3D;&#x2F;usr&#x2F;local&#x2F;php73&#x2F;bin \</span><br><span class="line">--sbindir&#x3D;&#x2F;usr&#x2F;local&#x2F;php73&#x2F;sbin \</span><br><span class="line">--includedir&#x3D;&#x2F;usr&#x2F;local&#x2F;php73&#x2F;include \</span><br><span class="line">--libdir&#x3D;&#x2F;usr&#x2F;local&#x2F;php73&#x2F;lib&#x2F;php \</span><br><span class="line">--mandir&#x3D;&#x2F;usr&#x2F;local&#x2F;php73&#x2F;php&#x2F;man \</span><br><span class="line">--with-config-file-path&#x3D;&#x2F;usr&#x2F;local&#x2F;php73&#x2F;etc \</span><br><span class="line">--with-openssl \</span><br><span class="line">--enable-mbstring \</span><br><span class="line">--enable-fpm</span><br><span class="line"></span><br><span class="line">sudo make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
+
+<h1 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># php7.1</span></span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/php71 --with-config-file-path=/usr/<span class="built_in">local</span>/php71/etc --with-config-file-scan-dir=/usr/<span class="built_in">local</span>/php71/conf.d --<span class="built_in">enable</span>-fpm --with-fpm-user=www --with-fpm-group=www --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-iconv-dir --with-freetype-dir=/usr/<span class="built_in">local</span>/freetype --with-jpeg-dir --with-png-dir --with-zlib --with-libxml-dir=/usr --<span class="built_in">enable</span>-xml --<span class="built_in">disable</span>-rpath --<span class="built_in">enable</span>-bcmath --<span class="built_in">enable</span>-shmop --<span class="built_in">enable</span>-sysvsem --<span class="built_in">enable</span>-inline-optimization --with-curl --<span class="built_in">enable</span>-mbregex --<span class="built_in">enable</span>-mbstring --with-mcrypt --<span class="built_in">enable</span>-ftp --with-gd --<span class="built_in">enable</span>-gd-native-ttf --with-openssl --with-mhash --<span class="built_in">enable</span>-pcntl --<span class="built_in">enable</span>-sockets --with-xmlrpc --<span class="built_in">enable</span>-zip --<span class="built_in">enable</span>-soap --with-gettext --<span class="built_in">disable</span>-fileinfo --<span class="built_in">enable</span>-intl --with-xsl --<span class="built_in">enable</span>-maintainer-zts </span><br><span class="line"> ./configure --with-php-config=/usr/<span class="built_in">local</span>/php71/bin/php-config --with-readline</span><br><span class="line"></span><br><span class="line"><span class="comment"># php7废弃的扩展</span></span><br><span class="line"><span class="comment"># --with-mysql=mysqlnd</span></span><br><span class="line"></span><br><span class="line">sudo make &amp;&amp; sudo make install</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Warning! a PEAR user config file already exists from a previous PEAR installation at &#39;&#x2F;home&#x2F;hanzhijie&#x2F;.pearrc&#39;. You may probably want to remove it.</span><br><span class="line">Wrote PEAR system config file at: &#x2F;usr&#x2F;local&#x2F;php71&#x2F;etc&#x2F;pear.conf</span><br><span class="line">You may want to add: &#x2F;usr&#x2F;local&#x2F;php71&#x2F;lib&#x2F;php to your php.ini include_path</span><br><span class="line">&#x2F;mnt&#x2F;c&#x2F;Users&#x2F;hzj&#x2F;Desktop&#x2F;boom&#x2F;tmp&#x2F;php-7.1.26&#x2F;build&#x2F;shtool install -c ext&#x2F;phar&#x2F;phar.phar &#x2F;usr&#x2F;local&#x2F;php71&#x2F;bin</span><br><span class="line">ln -s -f phar.phar &#x2F;usr&#x2F;local&#x2F;php71&#x2F;bin&#x2F;phar</span><br><span class="line">Installing PDO headers:           &#x2F;usr&#x2F;local&#x2F;php71&#x2F;include&#x2F;php&#x2F;ext&#x2F;pdo&#x2F;</span><br></pre></td></tr></table></figure>
+
+<h2 id="php7-3"><a href="#php7-3" class="headerlink" title="php7.3"></a>php7.3</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/php73 --with-config-file-path=/usr/<span class="built_in">local</span>/php73/etc --with-config-file-scan-dir=/usr/<span class="built_in">local</span>/php73/conf.d --<span class="built_in">enable</span>-fpm --with-fpm-user=www --with-fpm-group=www --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-iconv-dir --with-freetype-dir=/usr/<span class="built_in">local</span>/freetype --with-jpeg-dir --with-png-dir --with-zlib --with-libxml-dir=/usr --<span class="built_in">enable</span>-xml --<span class="built_in">disable</span>-rpath --<span class="built_in">enable</span>-bcmath --<span class="built_in">enable</span>-shmop --<span class="built_in">enable</span>-sysvsem --<span class="built_in">enable</span>-inline-optimization --with-curl --<span class="built_in">enable</span>-mbregex --<span class="built_in">enable</span>-mbstring --<span class="built_in">enable</span>-ftp --with-gd  --with-openssl --with-mhash --<span class="built_in">enable</span>-pcntl --<span class="built_in">enable</span>-sockets --with-xmlrpc --<span class="built_in">enable</span>-zip --<span class="built_in">enable</span>-soap --with-gettext --<span class="built_in">disable</span>-fileinfo --<span class="built_in">enable</span>-intl --with-xsl --with-kerberos --<span class="built_in">enable</span>-sysvshm --<span class="built_in">enable</span>-opcache --<span class="built_in">enable</span>-libxml --with-bz2 --with-pear --with-pdo-sqlite --with-pcre-regex --with-libdir=lib64 --with-kerberos --<span class="built_in">enable</span>-maintainer-zts  </span><br><span class="line">./configure --with-php-config=/usr/<span class="built_in">local</span>/php73/bin/php-config --with-readline</span><br><span class="line"><span class="comment"># php7.2废弃的扩展</span></span><br><span class="line"><span class="comment"># --with-mcrypt --enable-gd-native-ttf</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Warning! a PEAR user config file already exists from a previous PEAR installation at <span class="string">'/home/hanzhijie/.pearrc'</span>. You may probably want to remove it.</span><br><span class="line">Wrote PEAR system config file at: /usr/<span class="built_in">local</span>/php73/etc/pear.conf</span><br><span class="line">You may want to add: /usr/<span class="built_in">local</span>/php73/lib/php to your php.ini include_path</span><br><span class="line">/mnt/c/Users/hzj/Desktop/boom/tmp/php-7.3.2/build/shtool install -c ext/phar/phar.phar /usr/<span class="built_in">local</span>/php73/bin</span><br><span class="line">ln -s -f phar.phar /usr/<span class="built_in">local</span>/php73/bin/phar</span><br><span class="line">Installing PDO headers:           /usr/<span class="built_in">local</span>/php73/include/php/ext/pdo/</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="pthreads-安装"><a href="#pthreads-安装" class="headerlink" title="pthreads 安装"></a>pthreads 安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">----------------------------------------------------------------------</span><br><span class="line">Libraries have been installed in:</span><br><span class="line">   &#x2F;mnt&#x2F;c&#x2F;Users&#x2F;hzj&#x2F;Desktop&#x2F;boom&#x2F;tmp&#x2F;pthreads-master&#x2F;modules</span><br><span class="line"></span><br><span class="line">If you ever happen to want to link against installed libraries</span><br><span class="line">in a given directory, LIBDIR, you must either use libtool, and</span><br><span class="line">specify the full pathname of the library, or use the &#96;-LLIBDIR&#39;</span><br><span class="line">flag during linking and do at least one of the following:</span><br><span class="line">   - add LIBDIR to the &#96;LD_LIBRARY_PATH&#39; environment variable</span><br><span class="line">     during execution</span><br><span class="line">   - add LIBDIR to the &#96;LD_RUN_PATH&#39; environment variable</span><br><span class="line">     during linking</span><br><span class="line">   - use the &#96;-Wl,--rpath -Wl,LIBDIR&#39; linker flag</span><br><span class="line">   - have your system administrator add LIBDIR to &#96;&#x2F;etc&#x2F;ld.so.conf&#39;</span><br><span class="line"></span><br><span class="line">See any operating system documentation about shared libraries for</span><br><span class="line">more information, such as the ld(1) and ld.so(8) manual pages.</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">Build complete.</span><br><span class="line">Don&#39;t forget to run &#39;make test&#39;.</span><br><span class="line"></span><br><span class="line">Installing shared extensions:     &#x2F;usr&#x2F;local&#x2F;php73&#x2F;lib&#x2F;php&#x2F;extensions&#x2F;no-debug-zts-20180731&#x2F;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-php/php_001_composer" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2018-10-27T01:48:32.000Z"><a href="/web/blog/2018/10/27/php/php_001_composer/">2018-10-27</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/web/blog/2018/10/27/php/php_001_composer/">PHP[001]:Composer</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <blockquote>
+<p><a href="https://github.com/slince/composer-registry-manager" target="_blank" rel="noopener">https://github.com/slince/composer-registry-manager</a></p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ composer repo:ls</span><br><span class="line">  composer       https:<span class="comment">//packagist.org</span></span><br><span class="line">  phpcomposer    https:<span class="comment">//packagist.phpcomposer.com</span></span><br><span class="line">* composer-proxy https:<span class="comment">//packagist.composer-proxy.org</span></span><br><span class="line">  laravel-china  https:<span class="comment">//packagist.laravel-china.org</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ composer repo:use</span><br><span class="line">Please select your favorite registry (defaults to composer)</span><br><span class="line">  [0] composer</span><br><span class="line">  [1] phpcomposer</span><br><span class="line">  [2] composer-proxy</span><br><span class="line">  [3] laravel-china</span><br><span class="line"> &gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ composer repo:use phpcomposer</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-c/C_007_链表" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2017-06-02T07:24:09.000Z"><a href="/web/blog/2017/06/02/c/C_007_链表/">2017-06-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/web/blog/2017/06/02/c/C_007_链表/">c/c++:单链表的拆分</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p><a href="https://acm.sdut.edu.cn/onlinejudge2/index.php/Home/Index/problemdetail/pid/2120.html" target="_blank" rel="noopener">数据结构实验之链表五：单链表的拆分</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">head</span> , *<span class="title">tail</span>,*<span class="title">p</span>;</span></span><br><span class="line"></span><br><span class="line">    head =<span class="keyword">new</span> node;</span><br><span class="line">    head-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    tail = head;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">int</span> sum1,sum2;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;num;</span><br><span class="line">    <span class="keyword">while</span>(num--)</span><br><span class="line">    &#123;</span><br><span class="line">        p = <span class="keyword">new</span> node ;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;p-&gt;data;</span><br><span class="line">        tail-&gt;next = p;</span><br><span class="line">        tail = tail-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    p-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">head1</span> , *<span class="title">head2</span> ,*<span class="title">tail1</span>,*<span class="title">tail2</span>;</span></span><br><span class="line"></span><br><span class="line">    head1 = <span class="keyword">new</span> node;</span><br><span class="line">    head1-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    tail1 = head1;</span><br><span class="line"></span><br><span class="line">    head2 = <span class="keyword">new</span> node;</span><br><span class="line">    head2-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    tail2 =head2;</span><br><span class="line"></span><br><span class="line">    p = head-&gt;next;</span><br><span class="line">    sum1 = <span class="number">0</span>;</span><br><span class="line">    sum2 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(p!=<span class="literal">NULL</span>)&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(p-&gt;data%<span class="number">2</span> ==<span class="number">1</span>)&#123;</span><br><span class="line">            tail1-&gt;next = p;</span><br><span class="line">            tail1 = tail1-&gt;next;</span><br><span class="line">            sum1 +=<span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            tail2-&gt;next = p;</span><br><span class="line">            tail2 = tail2-&gt;next;</span><br><span class="line">            sum2 +=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    tail1-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    tail2-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; sum2 &lt;&lt; <span class="string">' '</span>&lt;&lt;sum1&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    p = head2-&gt;next;</span><br><span class="line">    <span class="keyword">while</span>(p!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;p-&gt;data;</span><br><span class="line">        <span class="keyword">if</span>(p-&gt;next!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt; <span class="string">' '</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    p = head1-&gt;next;</span><br><span class="line">    <span class="keyword">while</span>(p!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;p-&gt;data;</span><br><span class="line">        <span class="keyword">if</span>(p-&gt;next!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt; <span class="string">' '</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-c/C_006_链表" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2017-06-02T07:23:09.000Z"><a href="/web/blog/2017/06/02/c/C_006_链表/">2017-06-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/web/blog/2017/06/02/c/C_006_链表/">c/c++:有序链表的归并</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p><a href="https://acm.sdut.edu.cn/onlinejudge2/index.php/Home/Index/problemdetail/pid/2119.html" target="_blank" rel="noopener">数据结构实验之链表四：有序链表的归并</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> length1,length2;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">head1</span>,*<span class="title">head2</span>,*<span class="title">tail1</span>,*<span class="title">tail2</span>,*<span class="title">p1</span>,*<span class="title">p2</span>,*<span class="title">tmp</span>;</span></span><br><span class="line"></span><br><span class="line">    head1 = <span class="keyword">new</span> node;</span><br><span class="line">    tail1 = head1;</span><br><span class="line">    head1-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    head2 = <span class="keyword">new</span> node ;</span><br><span class="line">    tail2 = head2;</span><br><span class="line">    head2-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt;length1&gt;&gt;length2;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(length1 -- )</span><br><span class="line">    &#123;</span><br><span class="line">        p1 = <span class="keyword">new</span> node ;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;p1-&gt;data;</span><br><span class="line">        tail1-&gt;next = p1;</span><br><span class="line">        tail1 = p1;</span><br><span class="line">    &#125;</span><br><span class="line">    p1-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(length2 -- )</span><br><span class="line">    &#123;</span><br><span class="line">        p2 = <span class="keyword">new</span> node ;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;p2-&gt;data;</span><br><span class="line">        tail2-&gt;next = p2;</span><br><span class="line">        tail2 = p2;</span><br><span class="line">    &#125;</span><br><span class="line">    p2-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    p1 = head1;</span><br><span class="line">    p2 = head2;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">head</span>,*<span class="title">tail</span>;</span></span><br><span class="line"></span><br><span class="line">    head = <span class="keyword">new</span> node;</span><br><span class="line">    head-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    tail = head;</span><br><span class="line"></span><br><span class="line">    p1 = head1-&gt;next;</span><br><span class="line">    p2 = head2-&gt;next;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(p1&amp;&amp;p2)&#123;</span><br><span class="line">        <span class="keyword">if</span>(p1-&gt;data &lt; p2-&gt;data)&#123;</span><br><span class="line">            tail-&gt;next = p1;</span><br><span class="line">            p1 = p1-&gt;next;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            tail-&gt;next = p2;</span><br><span class="line">            p2 = p2-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        tail = tail-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(p1)&#123;</span><br><span class="line">        tail-&gt;next = p1;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        tail-&gt;next = p2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span>(head2);</span><br><span class="line">    <span class="keyword">delete</span>(head1);</span><br><span class="line"></span><br><span class="line">    p1 = head-&gt;next;</span><br><span class="line">    <span class="keyword">while</span>(p1-&gt;next!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;p1-&gt;data&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">        p1 = p1-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; p1-&gt;data&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-c/C_005_链表" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2017-06-02T07:22:09.000Z"><a href="/web/blog/2017/06/02/c/C_005_链表/">2017-06-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/web/blog/2017/06/02/c/C_005_链表/">c/c++:逆序建立链表</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p><a href="https://acm.sdut.edu.cn/onlinejudge2/index.php/Home/Index/problemdetail/pid/2118.html" target="_blank" rel="noopener">数据结构实验之链表三：链表的逆置</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">head</span>, *<span class="title">tail</span>, *<span class="title">p</span>, *<span class="title">tmpNode</span>;</span></span><br><span class="line">    head = <span class="keyword">new</span> node;</span><br><span class="line">    head-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    tail = head;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        p = <span class="keyword">new</span> node;</span><br><span class="line">        p-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; num ;</span><br><span class="line">        <span class="keyword">if</span>(num == <span class="number">-1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        p-&gt;data = num;</span><br><span class="line">        tail-&gt;next = p;</span><br><span class="line">        tail = p;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    p = head-&gt;next;</span><br><span class="line">    head-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(p-&gt;next != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        tmpNode = p-&gt;next;</span><br><span class="line">        p-&gt;next = head-&gt;next;</span><br><span class="line">        head-&gt;next = p;</span><br><span class="line">        p = tmpNode;</span><br><span class="line">    &#125;</span><br><span class="line">    p-&gt;next = head-&gt;next;</span><br><span class="line">    head-&gt;next = p;</span><br><span class="line"></span><br><span class="line">    p = head-&gt;next;</span><br><span class="line">    <span class="keyword">while</span>(p-&gt;next != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;p-&gt;data&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">        p=p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;p-&gt;data&lt;&lt;<span class="built_in">endl</span>;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-c/C_004_链表" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2017-06-02T07:21:09.000Z"><a href="/web/blog/2017/06/02/c/C_004_链表/">2017-06-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/web/blog/2017/06/02/c/C_004_链表/">c/c++:逆序建立链表</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p><a href="https://acm.sdut.edu.cn/onlinejudge2/index.php/Home/Index/problemdetail/pid/2117.html" target="_blank" rel="noopener">数据结构实验之链表二：逆序建立链表</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">head</span>, *<span class="title">tail</span>, *<span class="title">p</span>;</span></span><br><span class="line">    head = <span class="keyword">new</span> node;</span><br><span class="line">    head-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    tail = head;</span><br><span class="line">    <span class="keyword">int</span> N ;</span><br><span class="line">    <span class="keyword">int</span> tmpN;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;N;</span><br><span class="line">    &#123;</span><br><span class="line">        tmpN = N;</span><br><span class="line">        <span class="keyword">while</span>(tmpN--)</span><br><span class="line">        &#123;</span><br><span class="line">            p = <span class="keyword">new</span> node;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; p-&gt;data ;</span><br><span class="line">            p-&gt;next = head-&gt;next;</span><br><span class="line">            head-&gt;next = p;</span><br><span class="line">        &#125;</span><br><span class="line">        p = head-&gt;next;</span><br><span class="line">        <span class="keyword">while</span>(p-&gt;next!=<span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;p-&gt;data&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">            p=p-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;p-&gt;data&lt;&lt;<span class="string">' '</span>;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-c/C_003_链表" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2017-06-02T07:20:09.000Z"><a href="/web/blog/2017/06/02/c/C_003_链表/">2017-06-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/web/blog/2017/06/02/c/C_003_链表/">c/c++:单向链表顺序输出</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p><a href="https://acm.sdut.edu.cn/onlinejudge2/index.php/Home/Index/problemdetail/pid/2116.html" target="_blank" rel="noopener">数据结构实验之链表一：顺序建立链表</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">std</span>::ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">head</span>, *<span class="title">tail</span>, *<span class="title">p</span>;</span></span><br><span class="line">    head = <span class="keyword">new</span> node;</span><br><span class="line">    head-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    tail = head;</span><br><span class="line">    <span class="keyword">int</span> N ;</span><br><span class="line">    <span class="keyword">int</span> tmpN;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;N;</span><br><span class="line">    &#123;</span><br><span class="line">        tmpN = N;</span><br><span class="line">        <span class="keyword">while</span>(tmpN--)</span><br><span class="line">        &#123;</span><br><span class="line">            p = <span class="keyword">new</span> node;</span><br><span class="line">            p-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">            <span class="built_in">cin</span> &gt;&gt; p-&gt;data ;</span><br><span class="line">            tail-&gt;next = p;</span><br><span class="line">            tail = p;</span><br><span class="line">        &#125;</span><br><span class="line">        p = head-&gt;next;</span><br><span class="line">        <span class="keyword">while</span>(p-&gt;next!=<span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;p-&gt;data&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">            p=p-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;p-&gt;data&lt;&lt;<span class="string">' '</span>;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/web/blog/page/5/" class="alignleft prev">Prev</a>
+  
+  
+    <a href="/web/blog/page/7/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="hzjoyous.github.io/web/blog">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/web/blog/categories/c/">c</a><small>11</small></li>
+  
+    <li><a href="/web/blog/categories/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/node/">node</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/other/">other</a><small>14</small></li>
+  
+    <li><a href="/web/blog/categories/php/">php</a><small>23</small></li>
+  
+    <li><a href="/web/blog/categories/python/">python</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/tool/">tool</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/web/blog/tags/blog/">blog</a><small>3</small></li>
+  
+    <li><a href="/web/blog/tags/c/">c</a><small>11</small></li>
+  
+    <li><a href="/web/blog/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/http/">http</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/java/">java</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/mysql/">mysql</a><small>2</small></li>
+  
+    <li><a href="/web/blog/tags/node/">node</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/other/">other</a><small>14</small></li>
+  
+    <li><a href="/web/blog/tags/php/">php</a><small>23</small></li>
+  
+    <li><a href="/web/blog/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/tool/">tool</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2019 hzjoyous
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/web/blog/js/jquery-3.4.1.min.js"></script>
+
+<script src="/web/blog/js/jquery.imagesloaded.min.js"></script>
+<script src="/web/blog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/web/blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/web/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

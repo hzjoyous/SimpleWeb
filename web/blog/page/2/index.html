@@ -1,0 +1,674 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Page 2 | biubiubiu~</title>
+  <meta name="author" content="hzjoyous">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="biubiubiu~"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/web/blog/favicon.png" rel="icon">
+  <link rel="alternate" href="/web/blog/atom.xml" title="biubiubiu~" type="application/atom+xml">
+  <link rel="stylesheet" href="/web/blog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/web/blog/">biubiubiu~</a></h1>
+  <h2><a href="/web/blog/">快乐~</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/web/blog/">Home</a></li>
+    
+      <li><a href="/web/blog/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article id="post-c/C_KMP" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2019-07-02T06:18:09.000Z"><a href="/web/blog/2019/07/02/c/C_KMP/">2019-07-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/web/blog/2019/07/02/c/C_KMP/">c/c++[00X]:KMP</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>kmp 的 next 串分析</p>
+<table>
+<thead>
+<tr>
+<th>a</th>
+<th>b</th>
+<th>a</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>a</th>
+<th>c</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>a</th>
+<th>b</th>
+<th>a</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>a</th>
+<th>c</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>‘’</td>
+<td>‘a’</td>
+<td>‘ab’</td>
+<td>‘aba’</td>
+<td>‘abaa’</td>
+<td>‘abaab’</td>
+<td>‘abaabc’</td>
+<td>‘abaabca’</td>
+</tr>
+<tr>
+<td>‘’</td>
+<td>‘ax’</td>
+<td>‘abx’</td>
+<td>‘abax’</td>
+<td>‘abaax’</td>
+<td>‘abaabx’</td>
+<td>‘abaabax’</td>
+<td>‘abaabcx’</td>
+</tr>
+<tr>
+<td>‘’</td>
+<td>‘x’</td>
+<td>‘x’</td>
+<td>‘ax’</td>
+<td>‘ax’</td>
+<td>‘abx’</td>
+<td>‘x’</td>
+<td>‘ax’</td>
+</tr>
+</tbody></table>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/web/blog/2019/07/02/c/C_KMP/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-other/服务器被攻击了" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2019-07-02T06:18:09.000Z"><a href="/web/blog/2019/07/02/other/服务器被攻击了/">2019-07-02</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/web/blog/2019/07/02/other/服务器被攻击了/">服务器被攻击了</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>今天发现有个数据库消失不见了，然后。。。。发现被人入侵了，入侵的是lnmp安装的phpadmin</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat access.log | awk &#39;&#123;a[$1]+&#x3D;1;&#125; END &#123;for(i in a)&#123;print a[i]&quot; &quot;i;&#125;&#125;&#39; | sort -t &quot; &quot; -k 1 -n</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-php/php_000_link" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2019-07-01T07:20:09.000Z"><a href="/web/blog/2019/07/01/php/php_000_link/">2019-07-01</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/web/blog/2019/07/01/php/php_000_link/">PHP[000]:书本杂志</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <table>
+<thead>
+<tr>
+<th>x</th>
+<th>url</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PHP Code Quality Tools to Check and Improve your Code</td>
+<td><a href="https://web-techno.net/code-quality-check-tools-php/" target="_blank" rel="noopener">https://web-techno.net/code-quality-check-tools-php/</a></td>
+</tr>
+<tr>
+<td>Github星聚弃疗榜(Github星爆沙雕榜)</td>
+<td><a href="https://github.com/zhaoolee/StarsAndClown" target="_blank" rel="noopener">https://github.com/zhaoolee/StarsAndClown</a></td>
+</tr>
+<tr>
+<td>php版本兼容</td>
+<td><a href="https://github.com/wapmorgan/PhpCodeFixer" target="_blank" rel="noopener">https://github.com/wapmorgan/PhpCodeFixer</a></td>
+</tr>
+<tr>
+<td>静态检测</td>
+<td><a href="https://github.com/phpstan/phpstan" target="_blank" rel="noopener">https://github.com/phpstan/phpstan</a></td>
+</tr>
+<tr>
+<td>代码复杂的检测</td>
+<td><a href="https://github.com/bmitch/churn-php" target="_blank" rel="noopener">https://github.com/bmitch/churn-php</a></td>
+</tr>
+<tr>
+<td>静态检测</td>
+<td><a href="https://github.com/JakubOnderka/PHP-Parallel-Lint" target="_blank" rel="noopener">https://github.com/JakubOnderka/PHP-Parallel-Lint</a></td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-other/webpack有感" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2019-06-28T15:25:00.000Z"><a href="/web/blog/2019/06/28/other/webpack有感/">2019-06-28</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/web/blog/2019/06/28/other/webpack有感/">webpack 有感</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>明天就要回乡了，抓紧看了下书（其实是被子都寄走了，晚上睡觉不舒服）</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/web/blog/2019/06/28/other/webpack有感/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-other/面向对象杂谈" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2019-06-28T12:25:00.000Z"><a href="/web/blog/2019/06/28/other/面向对象杂谈/">2019-06-28</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/web/blog/2019/06/28/other/面向对象杂谈/">面向对象随笔</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <h1 id="起初，“面向对象”是专指在程序设计中采用封装、继承、多态等设计方法"><a href="#起初，“面向对象”是专指在程序设计中采用封装、继承、多态等设计方法" class="headerlink" title="起初，“面向对象”是专指在程序设计中采用封装、继承、多态等设计方法"></a>起初，“面向对象”是专指在程序设计中采用封装、继承、多态等设计方法</h1><p>看下面一段php代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eat</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'eat'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eatFood</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    eat();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">eatFood2</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    eat();</span><br><span class="line">    eat();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/web/blog/2019/06/28/other/面向对象杂谈/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-other/随笔" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2019-06-28T07:25:00.000Z"><a href="/web/blog/2019/06/28/other/随笔/">2019-06-28</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/web/blog/2019/06/28/other/随笔/">从数据绑定看现代库的本质（随笔）</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p><code>这边文章目前没有想清楚如何表达只是作为一份草稿写来展示的</code></p>
+<p>编码中没有什么是加一层解决不了的，如果有就再加一层</p>
+      
+    </div>
+    <footer>
+      
+        
+          <div class="alignleft">
+            <a href="/web/blog/2019/06/28/other/随笔/#more" class="more-link">Read More</a>
+          </div>
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-other/hexoComment" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2019-06-16T10:44:17.000Z"><a href="/web/blog/2019/06/16/other/hexoComment/">2019-06-16</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/web/blog/2019/06/16/other/hexoComment/">hexo 点评系统</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>周末两天用 symfony 写了个小的点评系统，接入到 hexo 搭建的博客上，下面放上 git 地址</p>
+<p><code>https://github.com/hzjoyous/api.nonodi.com</code><br>前端代码 –baseUri要替换成自己的–</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>blog<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="css">        @<span class="keyword">charset</span> <span class="string">"utf-8"</span>;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-id">#commentsProvidedHzj</span> &#123;</span></span><br><span class="line"><span class="undefined">            padding: 10px;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">border-top</span>: 2<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#cccccc</span>;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">border-bottom</span>: 2<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#cccccc</span>;</span></span><br><span class="line"><span class="undefined">            font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Hiragino Sans GB W3", "WenQuanYi Micro Hei", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">letter-spacing</span>: 0<span class="selector-class">.05em</span>;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-id">#commentsProvidedHzj</span> <span class="selector-class">.avatar</span> &#123;</span></span><br><span class="line"><span class="undefined">            width: 10%;</span></span><br><span class="line"><span class="undefined">            float: left;</span></span><br><span class="line"><span class="undefined">            padding-top: 7px;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-id">#commentsProvidedHzj</span> <span class="selector-class">.comment-info</span> &#123;</span></span><br><span class="line"><span class="undefined">            width: 85%;</span></span><br><span class="line"><span class="undefined">            float: left;</span></span><br><span class="line"><span class="undefined">            line-height: 1em;</span></span><br><span class="line"><span class="undefined">            margin-left: 10px;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-id">#commentsProvidedHzj</span> <span class="selector-class">.comment-info</span> <span class="selector-class">.nickname</span> &#123;</span></span><br><span class="line"><span class="undefined">            font-size: 18px;</span></span><br><span class="line"><span class="undefined">            font-weight: bold;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">line-height</span>: 1<span class="selector-class">.5em</span>;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-id">#commentsProvidedHzj</span> <span class="selector-class">.comment-info</span> <span class="selector-class">.time</span> &#123;</span></span><br><span class="line"><span class="undefined">            font-size: 13px;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">color</span>: <span class="selector-id">#999999</span>;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-id">#commentsProvidedHzj</span> <span class="selector-class">.comment-info</span> <span class="selector-class">.content</span> &#123;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">border-top</span>: 2<span class="selector-tag">px</span> <span class="selector-tag">dotted</span> <span class="selector-id">#cccccc</span>;</span></span><br><span class="line"><span class="undefined">            padding-top: 5px;</span></span><br><span class="line"><span class="undefined">            font-size: 15px;</span></span><br><span class="line"><span class="undefined">            font-weight: 300;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">line-height</span>: 1<span class="selector-class">.5em</span>;</span></span><br><span class="line"><span class="undefined">            width: auto;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-id">#commentsProvidedHzj</span> <span class="selector-class">.comment-info</span> <span class="selector-tag">a</span><span class="selector-class">.reply</span> &#123;</span></span><br><span class="line"><span class="undefined">            display: block;</span></span><br><span class="line"><span class="undefined">            float: right;</span></span><br><span class="line"><span class="undefined">            font-size: 14px;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">color</span>: <span class="selector-id">#999999</span>;</span></span><br><span class="line"><span class="undefined">            cursor: pointer;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-id">#commentsProvidedHzj</span> <span class="selector-tag">input</span>,</span></span><br><span class="line"><span class="css">        <span class="selector-id">#commentsProvidedHzj</span> <span class="selector-tag">textarea</span>,</span></span><br><span class="line"><span class="css">        <span class="selector-id">#commentsProvidedHzj</span> <span class="selector-tag">button</span> &#123;</span></span><br><span class="line"><span class="undefined">            border: none;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">box-shadow</span>: 0<span class="selector-tag">px</span> 1<span class="selector-tag">px</span> 2<span class="selector-tag">px</span> 0<span class="selector-tag">px</span> <span class="selector-tag">rgba</span>(0, 0, 0, 0<span class="selector-class">.25</span>);</span></span><br><span class="line"><span class="undefined">            border-radius: 2px;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-id">#commentsProvidedHzj</span> <span class="selector-tag">input</span> &#123;</span></span><br><span class="line"><span class="undefined">            width: 28%;</span></span><br><span class="line"><span class="undefined">            margin: 0;</span></span><br><span class="line"><span class="undefined">            padding: 5px;</span></span><br><span class="line"><span class="undefined">            margin-right: 2%;</span></span><br><span class="line"><span class="undefined">            height: 32px;</span></span><br><span class="line"><span class="undefined">            font-size: 18px;</span></span><br><span class="line"><span class="undefined">            line-height: 32px;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">        @<span class="keyword">media</span> only screen and (max-width: <span class="number">720px</span>) &#123;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">            <span class="selector-id">#commentsProvidedHzj</span> <span class="selector-tag">input</span>,</span></span><br><span class="line"><span class="css">            <span class="selector-id">#commentsProvidedHzj</span> <span class="selector-tag">textarea</span> &#123;</span></span><br><span class="line"><span class="css">                <span class="selector-tag">border</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#cccccc</span>;</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">            <span class="selector-id">#commentsProvidedHzj</span> <span class="selector-tag">input</span> &#123;</span></span><br><span class="line"><span class="undefined">                width: 27%;</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">        @<span class="keyword">media</span> only screen and (max-width: <span class="number">400px</span>) &#123;</span></span><br><span class="line"><span class="css">            <span class="selector-id">#commentsProvidedHzj</span> <span class="selector-tag">input</span> &#123;</span></span><br><span class="line"><span class="undefined">                margin-right: 1%;</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">        @<span class="keyword">media</span> only screen and (max-width: <span class="number">350px</span>) &#123;</span></span><br><span class="line"><span class="css">            <span class="selector-id">#commentsProvidedHzj</span> <span class="selector-tag">input</span> &#123;</span></span><br><span class="line"><span class="undefined">                margin-right: 0;</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-id">#commentsProvidedHzj</span> <span class="selector-tag">textarea</span> &#123;</span></span><br><span class="line"><span class="undefined">            width: 96%;</span></span><br><span class="line"><span class="undefined">            font-size: 18px;</span></span><br><span class="line"><span class="undefined">            line-height: 24px;</span></span><br><span class="line"><span class="undefined">            margin-top: 10px;</span></span><br><span class="line"><span class="undefined">            padding: 5px;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="css">        <span class="selector-id">#commentsProvidedHzj</span> <span class="selector-tag">button</span> &#123;</span></span><br><span class="line"><span class="undefined">            width: 10%;</span></span><br><span class="line"><span class="undefined">            margin-left: 5px;</span></span><br><span class="line"><span class="undefined">            margin-top: 10px;</span></span><br><span class="line"><span class="undefined">            appearance: button;</span></span><br><span class="line"><span class="undefined">            cursor: pointer;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">color</span>: <span class="selector-id">#fff</span>;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">background-color</span>: <span class="selector-id">#5cb85c</span>;</span></span><br><span class="line"><span class="css">            <span class="selector-tag">border-color</span>: <span class="selector-id">#4cae4c</span>;</span></span><br><span class="line"><span class="undefined">            height: 32px;</span></span><br><span class="line"><span class="undefined">            min-width: 80px;</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"commentsProvidedHzj"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"commment"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"comment in info"</span> <span class="attr">class</span>=<span class="string">"comment"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"avatar"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">:src</span>=<span class="string">"comment.avatarUri"</span> <span class="attr">alt</span>=<span class="string">"nihao avatar"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"comment-info"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"nickname"</span>&gt;</span>$&#123;comment.nickname&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"time"</span>&gt;</span>$&#123;comment.createTime&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span>$&#123;comment.content&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"reply"</span> <span class="attr">herf</span>=<span class="string">"#submit4hzj"</span>&gt;</span>回复<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"clear: both; height: 30px;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"submit"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"nickname"</span> <span class="attr">v-model</span>=<span class="string">"submit.nickname"</span> <span class="attr">placeholder</span>=<span class="string">"nickname（必填）"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"email"</span> <span class="attr">v-model</span>=<span class="string">"submit.email"</span> <span class="attr">placeholder</span>=<span class="string">"email"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">class</span>=<span class="string">"website"</span> <span class="attr">v-model</span>=<span class="string">"submit.website"</span> <span class="attr">placeholder</span>=<span class="string">"website"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">id</span>=<span class="string">"submit4hzj"</span> <span class="attr">cols</span>=<span class="string">"30"</span> <span class="attr">rows</span>=<span class="string">"10"</span> <span class="attr">class</span>=<span class="string">"content"</span> <span class="attr">v-model</span>=<span class="string">"submit.content"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">placeholder</span>=<span class="string">"content（必填）"</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">"submitComment()"</span>&gt;</span>提交评论<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- &lt;script src="https://cdn.jsdelivr.net/npm/vue"&gt;&lt;/script&gt; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://vuejs.org/js/vue.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/axios/dist/axios.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="actionscript">        $app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">            delimiters: [<span class="string">'$&#123;'</span>, <span class="string">'&#125;'</span>],</span></span><br><span class="line"><span class="actionscript">            el: <span class="string">'#commentsProvidedHzj'</span>,</span></span><br><span class="line"><span class="undefined">            data: &#123;</span></span><br><span class="line"><span class="actionscript">                info: <span class="literal">null</span>,</span></span><br><span class="line"><span class="undefined">                submit: &#123;</span></span><br><span class="line"><span class="actionscript">                    <span class="string">'nickname'</span>: <span class="string">''</span>,</span></span><br><span class="line"><span class="actionscript">                    <span class="string">'email'</span>: <span class="string">''</span>,</span></span><br><span class="line"><span class="actionscript">                    <span class="string">'website'</span>: <span class="string">''</span>,</span></span><br><span class="line"><span class="actionscript">                    <span class="string">'uuid'</span>: <span class="string">''</span>,</span></span><br><span class="line"><span class="actionscript">                    <span class="string">'content'</span>: <span class="string">''</span></span></span><br><span class="line"><span class="undefined">                &#125;,</span></span><br><span class="line"><span class="actionscript">                baseUri: <span class="string">'https://xxx.xxx.com'</span>,</span></span><br><span class="line"><span class="undefined">            &#125;,</span></span><br><span class="line"><span class="undefined">            mounted() &#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">var</span> identity = <span class="built_in">window</span>.location.href;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="actionscript">                axios.get(<span class="keyword">this</span>.baseUri + <span class="string">'/comments'</span>, &#123;</span></span><br><span class="line"><span class="undefined">                    params: &#123;</span></span><br><span class="line"><span class="actionscript">                        uuid: <span class="keyword">this</span>.submit.uuid,</span></span><br><span class="line"><span class="undefined">                        identity: identity</span></span><br><span class="line"><span class="undefined">                    &#125;</span></span><br><span class="line"><span class="javascript">                &#125;).then(<span class="function"><span class="params">response</span> =&gt;</span> (</span></span><br><span class="line"><span class="actionscript">                    <span class="keyword">this</span>.info = response.data.value.comments,</span></span><br><span class="line"><span class="actionscript">                    <span class="keyword">this</span>.submit.uuid = response.data.value.uuid</span></span><br><span class="line"><span class="undefined">                ))</span></span><br><span class="line"><span class="javascript">                    .catch(<span class="function"><span class="params">error</span> =&gt;</span> <span class="built_in">console</span>.log(error))</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">            &#125;,</span></span><br><span class="line"><span class="undefined">            methods: &#123;</span></span><br><span class="line"><span class="actionscript">                submitComment: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">                    axios.get(<span class="keyword">this</span>.baseUri + <span class="string">'/addComment'</span>, &#123;</span></span><br><span class="line"><span class="undefined">                        params: &#123;</span></span><br><span class="line"><span class="actionscript">                            nickname: <span class="keyword">this</span>.submit.nickname,</span></span><br><span class="line"><span class="actionscript">                            email: <span class="keyword">this</span>.submit.email,</span></span><br><span class="line"><span class="actionscript">                            website: <span class="keyword">this</span>.submit.website,</span></span><br><span class="line"><span class="actionscript">                            uuid: <span class="keyword">this</span>.submit.uuid,</span></span><br><span class="line"><span class="actionscript">                            content: <span class="keyword">this</span>.submit.content</span></span><br><span class="line"><span class="undefined">                        &#125;</span></span><br><span class="line"><span class="undefined">                    &#125;)</span></span><br><span class="line"><span class="javascript">                        .then(<span class="function"><span class="params">response</span> =&gt;</span> (<span class="built_in">console</span>.log(response.data)))</span></span><br><span class="line"><span class="javascript">                        .catch(<span class="function"><span class="params">error</span> =&gt;</span> <span class="built_in">console</span>.log(error))</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">                    <span class="keyword">var</span> identity = <span class="built_in">window</span>.location.href;</span></span><br><span class="line"><span class="actionscript">                    axios.get(<span class="keyword">this</span>.baseUri + <span class="string">'/comments'</span>, &#123;</span></span><br><span class="line"><span class="undefined">                        params: &#123;</span></span><br><span class="line"><span class="actionscript">                            uuid: <span class="keyword">this</span>.submit.uuid,</span></span><br><span class="line"><span class="undefined">                            identity: identity</span></span><br><span class="line"><span class="undefined">                        &#125;</span></span><br><span class="line"><span class="javascript">                    &#125;).then(<span class="function"><span class="params">response</span> =&gt;</span> (</span></span><br><span class="line"><span class="actionscript">                        <span class="keyword">this</span>.info = response.data.value.comments,</span></span><br><span class="line"><span class="actionscript">                        <span class="keyword">this</span>.submit.uuid = response.data.value.uuid</span></span><br><span class="line"><span class="undefined">                    ))</span></span><br><span class="line"><span class="javascript">                        .catch(<span class="function"><span class="params">error</span> =&gt;</span> <span class="built_in">console</span>.log(error))</span></span><br><span class="line"><span class="undefined">                        </span></span><br><span class="line"><span class="undefined">                &#125;</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">        &#125;);</span></span><br><span class="line"><span class="undefined">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-other/cmd" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2019-06-10T07:25:38.000Z"><a href="/web/blog/2019/06/10/other/cmd/">2019-06-10</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/web/blog/2019/06/10/other/cmd/">cmd &amp; powerShell &amp; bash</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>普通用户下执行<code>$profile</code>以获取启动脚本路径<br><code>powershell 需要在管理员权限下执行 set-executionpolicy remotesigned 以使用自建脚本</code> ，等价<code>~/.bashrc</code></p>
+<figure class="highlight ps1"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function hexocgd&#123;</span><br><span class="line">    hexo clean; hexo g; hexo d;</span><br><span class="line">&#125;</span><br><span class="line">function hexogd&#123;</span><br><span class="line">    hexo g; hexo d;</span><br><span class="line">&#125;</span><br><span class="line">function workspace&#123;</span><br><span class="line">    Set-Location D:\workSpace\hexo;</span><br><span class="line">&#125;</span><br><span class="line">function editpspre&#123;</span><br><span class="line">    code C:\Users\HZJ\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>cmd</th>
+<th>PowerShell</th>
+<th>linux-bash</th>
+<th>desc</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cd</td>
+<td>cd</td>
+<td>cd</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>[command1] ; [command2]</code></td>
+<td><code>[command1] ; [command2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>try{[command1] ; [command2]} catch{$error[0];break}</code></td>
+<td><code>[command1] &amp;&amp; [command2]</code></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><code>[command1] | [command2]</code></td>
+<td><code>[command1] | [command2]</code></td>
+<td>管道</td>
+</tr>
+<tr>
+<td></td>
+<td><code>[command1] &gt; 1.txt</code></td>
+<td><code>[command1] &gt; 1.txt</code></td>
+<td>重定向</td>
+</tr>
+<tr>
+<td></td>
+<td><code>[command1] &gt;&gt; 1.txt</code></td>
+<td><code>[command1] &gt;&gt; 1.txt</code></td>
+<td>重定向</td>
+</tr>
+</tbody></table>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">:: 端口映射操作</span><br><span class="line">::  sql</span><br><span class="line">ssh -fNg -L [映射端口]:[远程ip]:[远程端口] [username]@[ip]</span><br><span class="line">::  redis</span><br><span class="line">ssh -fNg -L <span class="number">6379</span>:<span class="number">10</span>.<span class="number">0</span>.<span class="number">2</span>.<span class="number">222</span>:<span class="number">6379</span> hanzhijie@<span class="number">10</span>.<span class="number">0</span>.<span class="number">2</span>.<span class="number">222</span></span><br><span class="line">::  memcache</span><br><span class="line">ssh -fNg -L <span class="number">11211</span>:<span class="number">10</span>.<span class="number">0</span>.<span class="number">2</span>.<span class="number">221</span>:<span class="number">11211</span> hanzhijie@<span class="number">10</span>.<span class="number">0</span>.<span class="number">2</span>.<span class="number">222</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">::  order-app-<span class="built_in">start</span></span><br><span class="line"><span class="built_in">start</span> /b php -S localhost:<span class="number">8081</span> C:\Users\hzj\Desktop\xz\xz_app\public\index.php</span><br><span class="line">::  order-facade-<span class="built_in">start</span></span><br><span class="line"><span class="built_in">start</span> /b php -S localhost:<span class="number">8082</span> C:\Users\hzj\Desktop\xz\xz_facade\public\index.php</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-php/php_018_BitMap" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2019-03-19T07:20:09.000Z"><a href="/web/blog/2019/03/19/php/php_018_BitMap/">2019-03-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/web/blog/2019/03/19/php/php_018_BitMap/">PHP[018]:BitMap</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>BitMap算法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$redisHost     &#x3D; &#39;127.0.0.1&#39;;</span><br><span class="line">$redisPassWord &#x3D; &#39;&#39;;</span><br><span class="line">$redisPort     &#x3D; 6379;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$redis &#x3D; new \Redis();</span><br><span class="line">$redis-&gt;connect($redisHost, $redisPort);</span><br><span class="line">$redis-&gt;setOption(\Redis::OPT_READ_TIMEOUT, -1);</span><br><span class="line">$redisPassWord &amp;&amp; $redis-&gt;auth($redisPassWord);</span><br><span class="line">$cacheKey &#x3D; &#39;asdhasdhsjahdjahdjkahs&#39;;</span><br><span class="line">$maxOffSet &#x3D; 4294967296;</span><br><span class="line">$redis-&gt;setBit($cacheKey, 7, 0);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 高危。。。 如果值很小调用get 没有问题，如果值很大，则会出现没有反应的情况</span><br><span class="line">$result &#x3D; $redis-&gt;get($cacheKey);</span><br><span class="line">$result &#x3D; $redis-&gt;getbit($cacheKey, 13000);</span><br><span class="line"></span><br><span class="line">$start &#x3D; microtime(true);</span><br><span class="line">sleep(1);</span><br><span class="line"></span><br><span class="line">echo (microtime(true) - $start) . PHP_EOL;</span><br><span class="line">$start &#x3D; microtime(true);</span><br><span class="line">$result &#x3D; $redis-&gt;bitCount($cacheKey);</span><br><span class="line">echo (microtime(true) - $start) . PHP_EOL;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article id="post-php/php_019_RabbitMq" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2019-03-19T07:20:09.000Z"><a href="/web/blog/2019/03/19/php/php_019_RabbitMq/">2019-03-19</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/web/blog/2019/03/19/php/php_019_RabbitMq/">PHP[018]:RabbitMq</a></h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <h1 id="rabbitMq"><a href="#rabbitMq" class="headerlink" title="rabbitMq"></a>rabbitMq</h1><h2 id="exchange"><a href="#exchange" class="headerlink" title="exchange"></a>exchange</h2><table>
+<thead>
+<tr>
+<th>type</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>fanout</td>
+<td>绑定即 接收</td>
+</tr>
+<tr>
+<td>direct</td>
+<td>绑定并匹配符合时 接收</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>绑定并模糊匹配符合时接收</td>
+</tr>
+<tr>
+<td>headers</td>
+<td>绑定并匹配headers规则时接收</td>
+</tr>
+</tbody></table>
+<p>exchange 和 exchange 是多对多的关系</p>
+<p>exchange 和 queue 也是多对多的关系</p>
+<p><code>树挪死，人挪活</code></p>
+<p>mq 的具体使用还是看场景，从业务严格的程度来说 direct 和 headers 都是比较不错的交换机类型，尽管<code>书本上说 headers 比 topic 慢</code>，但是 headers 的扩展性和可读性在某些业务场景下比 topic 要好很多。</p>
+<p>毕竟一天 8000 订单 ，按照一个订单的生命周期可以发送 create,pay,confirm,waitcheckin,checkin 这些事件，且每个单子都可以发出这些事件，一天不过 8000*5 = 40000。是一个比较可控的范围</p>
+<p>用 headers 表示一个订单的 bookfrom 和 lodgeUnitType 是比较容易的</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$headers = [</span><br><span class="line">    <span class="string">'actionType'</span>=&gt;<span class="string">'xxx'</span>,</span><br><span class="line">    <span class="string">'bookFrom'</span>=&gt;<span class="string">'xxxxx'</span>,</span><br><span class="line">    <span class="string">'lodgeUnit'</span>=&gt;<span class="string">'xxx'</span>,</span><br><span class="line">];</span><br><span class="line">``` </span><br><span class="line">如果用 topic 表示的话，就变得丑陋很多</span><br><span class="line">```php</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$topoc = <span class="string">"actionType:&#123;$actionType&#125;;bookFrom:&#123;$bookFrom&#125;;lodgeUnitType:&#123;$lodgeUnitType&#125;"</span>;</span><br></pre></td></tr></table></figure>
+<p>并且规则的书写也不如 headers 来的直接，明确。</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/web/blog/" class="alignleft prev">Prev</a>
+  
+  
+    <a href="/web/blog/page/3/" class="alignright next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="hzjoyous.github.io/web/blog">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/web/blog/categories/c/">c</a><small>11</small></li>
+  
+    <li><a href="/web/blog/categories/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/node/">node</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/other/">other</a><small>14</small></li>
+  
+    <li><a href="/web/blog/categories/php/">php</a><small>23</small></li>
+  
+    <li><a href="/web/blog/categories/python/">python</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/tool/">tool</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/web/blog/tags/blog/">blog</a><small>3</small></li>
+  
+    <li><a href="/web/blog/tags/c/">c</a><small>11</small></li>
+  
+    <li><a href="/web/blog/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/http/">http</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/java/">java</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/mysql/">mysql</a><small>2</small></li>
+  
+    <li><a href="/web/blog/tags/node/">node</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/other/">other</a><small>14</small></li>
+  
+    <li><a href="/web/blog/tags/php/">php</a><small>23</small></li>
+  
+    <li><a href="/web/blog/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/tool/">tool</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2019 hzjoyous
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/web/blog/js/jquery-3.4.1.min.js"></script>
+
+<script src="/web/blog/js/jquery.imagesloaded.min.js"></script>
+<script src="/web/blog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/web/blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/web/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

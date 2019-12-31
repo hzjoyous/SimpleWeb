@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+
+
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            padding: 0px;
+            margin: 0px;
+            min-width: 350px;
+            background: yellowgreen;
+        }
+        
+        @media screen and (max-width: 720px) {
+            body {
+                background-color: lightblue;
+            }
+        }
+        
+        #loginMenu {
+            width: 60%;
+            height: 40%;
+            padding: 44px;
+            background: cadetblue;
+            margin: 0 auto;
+        }
+        
+        #login {
+            margin: 0 auto;
+            background: #000000;
+            color: white
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loginMenu">
+        <div id="login">
+            <div>title</div>
+            <div>登陆</div>
+            <input type="email" placeholder="电子邮件、电话或 Skype">
+            <div><span>11111</span><a>22222s</a> </div>
+            <div>xxxxxxx</div>
+            <input type="submit" value="下一步">
+        </div>
+    </div>
+</body>
+<script>
+    localStorage.clear();
+    name = localStorage.getItem("name");
+    if (name === "null") {
+        localStorage.setItem("name", "name");
+    }
+</script>
+
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  
+  <title>PHP[011]:curl | biubiubiu~</title>
+  <meta name="author" content="hzjoyous">
+  
+  <meta name="description" content="今天在研究了下 php curl cookie的使用 , 本來打算写一篇关于 php curl 的使用，主要是关于 cookie 的，但是 curl 在一定程度上相比于 socket 算是一个经过封装的扩展，所以写的过程中又引入了一个使用 socket 进行 http 请求的文章
+
+PHP 支持 D">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="PHP[011]:curl"/>
+  <meta property="og:site_name" content="biubiubiu~"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/web/blog/favicon.png" rel="icon">
+  <link rel="alternate" href="/web/blog/atom.xml" title="biubiubiu~" type="application/atom+xml">
+  <link rel="stylesheet" href="/web/blog/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/web/blog/">biubiubiu~</a></h1>
+  <h2><a href="/web/blog/">快乐~</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/web/blog/">Home</a></li>
+    
+      <li><a href="/web/blog/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article id="post-php/php_011_curl" class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time class="dt-published" datetime="2018-10-27T01:48:44.000Z"><a href="/web/blog/2018/10/27/php/php_011_curl/">2018-10-27</a></time>
+      
+      
+  
+    <h1 class="p-name title" itemprop="headline name">PHP[011]:curl</h1>
+  
+
+    </header>
+    <div class="e-content entry" itemprop="articleBody">
+      
+        <p>今天在研究了下 php curl cookie的使用 , 本來打算写一篇关于 php curl 的使用，主要是关于 cookie 的，但是 curl 在一定程度上相比于 socket 算是一个经过封装的扩展，所以写的过程中又引入了一个使用 socket 进行 http 请求的文章</p>
+<blockquote>
+<p>PHP 支持 Daniel Stenberg 创建的 libcurl 库，能够连接通讯各种服务器、使用各种协议。libcurl 目前支持的协议有 http、https、ftp、gopher、telnet、dict、file、ldap。 libcurl 同时支持 HTTPS 证书、HTTP POST、HTTP PUT、 FTP 上传(也能通过 PHP 的 FTP 扩展完成)、HTTP 基于表单的上传、代理、cookies、用户名+密码的认证</p>
+</blockquote>
+<p>curl 基础用法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ch &#x3D; curl_init();</span><br><span class="line">curl_setopt($ch,xxx,xxx);</span><br><span class="line">curl_setopt_array($ch,[]);</span><br><span class="line">curl_exec($ch);</span><br><span class="line">curl_close($ch);</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用socket进行http访问-（这一部分可以跳过，之后再看）"><a href="#使用socket进行http访问-（这一部分可以跳过，之后再看）" class="headerlink" title="使用socket进行http访问 （这一部分可以跳过，之后再看）"></a>使用socket进行http访问 （这一部分可以跳过，之后再看）</h3><p>这是一段使用 php socket 模拟 http get 请求的代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * super socket client</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">define(<span class="string">'GET'</span>, <span class="string">'GET'</span>);</span><br><span class="line">define(<span class="string">'POST'</span>, <span class="string">'POST'</span>);</span><br><span class="line">define(<span class="string">'sp'</span>, <span class="string">"\r\n"</span>);</span><br><span class="line">$url                     = <span class="string">'http://localhost:8080/'</span>;</span><br><span class="line">$url                     = <span class="string">'https://www.xiaozhu.com/'</span>;</span><br><span class="line">$body                    = <span class="string">''</span>;</span><br><span class="line">$protocol                = <span class="string">'HTTP/1.1'</span>;</span><br><span class="line">$urlInfo                 = parse_url($url);</span><br><span class="line">$host                    = $urlInfo[<span class="string">'host'</span>];</span><br><span class="line">$port                    = $urlInfo[<span class="string">'port'</span>] ?? <span class="string">'80'</span>;</span><br><span class="line">$headerArr               = [</span><br><span class="line">    <span class="string">'Host'</span> =&gt; $host</span><br><span class="line">];</span><br><span class="line">$headerArr[<span class="string">'User-Agent'</span>] = <span class="string">'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36'</span>;</span><br><span class="line"><span class="keyword">if</span> (stristr($url, <span class="string">'xiaozhu'</span>)) &#123;</span><br><span class="line">    $headerArr[<span class="string">'connection'</span>] = <span class="string">'close'</span>;</span><br><span class="line">&#125;</span><br><span class="line">$method                  = GET;</span><br><span class="line">$requestLine             = $method . <span class="string">' '</span> . $urlInfo[<span class="string">'path'</span>] . <span class="string">''</span> . <span class="string">'?'</span> . ($urlInfo[<span class="string">'query'</span>] ?? <span class="string">''</span>) . <span class="string">' '</span> . $protocol;</span><br><span class="line">$header                  = <span class="string">''</span>;</span><br><span class="line"><span class="keyword">foreach</span> ($headerArr <span class="keyword">as</span> $key =&gt; $value) &#123;</span><br><span class="line">    $header .= $header == <span class="string">''</span> ? ($key . <span class="string">':'</span> . $value) : (sp . $key . <span class="string">':'</span> . $value);</span><br><span class="line">&#125;</span><br><span class="line">$requestHeader = $header . sp . sp;</span><br><span class="line">$requestInfo   = $requestLine . sp . $requestHeader;</span><br><span class="line">$requestInfo   .= $body;</span><br><span class="line"></span><br><span class="line">$fp = fsockopen($host, $port, $errno, $errStr);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!$fp) &#123;</span><br><span class="line">    <span class="keyword">echo</span> $errStr . <span class="string">'('</span> . $errno . <span class="string">')'</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">readByFEof</span><span class="params">($fp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $str = <span class="string">''</span>;</span><br><span class="line">    <span class="keyword">while</span> (!feof($fp)) &#123;</span><br><span class="line">        $result = fread($fp, <span class="number">1024</span>);</span><br><span class="line">        $str    .= $result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $str;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (fwrite($fp, $requestInfo)) &#123;</span><br><span class="line">    $responseInfo = readByFEof($fp);</span><br><span class="line">&#125;</span><br><span class="line">fclose($fp);</span><br><span class="line"><span class="keyword">echo</span> $responseInfo;</span><br></pre></td></tr></table></figure>
+<p>这是一段使用 php socket 模拟 http get 请求的代码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * super socket client</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">define(<span class="string">'GET'</span>, <span class="string">'GET'</span>);</span><br><span class="line">define(<span class="string">'POST'</span>, <span class="string">'POST'</span>);</span><br><span class="line">define(<span class="string">'sp'</span>, <span class="string">"\r\n"</span>);</span><br><span class="line"><span class="comment">//$url = 'http://localhost:8080/';</span></span><br><span class="line">$url                         = <span class="string">'http://www.xiaozhu.com/'</span>;</span><br><span class="line">$body                        = <span class="string">''</span>;</span><br><span class="line">$protocol                    = <span class="string">'HTTP/1.1'</span>;</span><br><span class="line">$urlInfo                     = parse_url($url);</span><br><span class="line">$host                        = $urlInfo[<span class="string">'host'</span>];</span><br><span class="line">$port                        = $urlInfo[<span class="string">'port'</span>] ?? <span class="string">'80'</span>;</span><br><span class="line">$headerArr                   = [</span><br><span class="line">    <span class="string">'Host'</span> =&gt; $host</span><br><span class="line">];</span><br><span class="line">$postData                    = [<span class="string">'username'</span> =&gt; <span class="string">'发一个中文'</span>, <span class="string">'age'</span> =&gt; <span class="number">22</span>];</span><br><span class="line">$body                        = http_build_query($postData);</span><br><span class="line">$headerArr[<span class="string">'User-Agent'</span>]     = <span class="string">'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36'</span>;</span><br><span class="line">$headerArr[<span class="string">'Content-Type'</span>]   = <span class="string">'application/x-www-form-urlencoded'</span>;</span><br><span class="line">$headerArr[<span class="string">'Content-Length'</span>] = strlen($body);</span><br><span class="line">$headerArr[<span class="string">'cookie'</span>]         = <span class="string">'name=1417760419;'</span>;</span><br><span class="line"><span class="keyword">if</span> (stristr($url, <span class="string">'xiaozhu'</span>)) &#123;</span><br><span class="line">    $headerArr[<span class="string">'connection'</span>] = <span class="string">'close'</span>;</span><br><span class="line">&#125;</span><br><span class="line">$method      = POST;</span><br><span class="line">$requestLine = $method . <span class="string">' '</span> . $urlInfo[<span class="string">'path'</span>] . <span class="string">''</span> . <span class="string">'?'</span> . ($urlInfo[<span class="string">'query'</span>] ?? <span class="string">''</span>) . <span class="string">' '</span> . $protocol;</span><br><span class="line">$header      = <span class="string">''</span>;</span><br><span class="line"><span class="keyword">foreach</span> ($headerArr <span class="keyword">as</span> $key =&gt; $value) &#123;</span><br><span class="line">    $header .= $header == <span class="string">''</span> ? ($key . <span class="string">':'</span> . $value) : (sp . $key . <span class="string">':'</span> . $value);</span><br><span class="line">&#125;</span><br><span class="line">$requestHeader = $header . sp . sp;</span><br><span class="line">$requestInfo   = $requestLine . sp . $requestHeader;</span><br><span class="line">$requestInfo   .= $body;</span><br><span class="line"></span><br><span class="line">$fp = fsockopen($host, $port, $errno, $errStr);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!$fp) &#123;</span><br><span class="line">    <span class="keyword">echo</span> $errStr . <span class="string">'('</span> . $errno . <span class="string">')'</span>;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * PHP 的 feof() 函数用于检测是否已到达文件末尾 (eof)。如果文件指针到了 EOF 或者出错时则返回 TRUE，否则返回一个错误（包括 socket 超时），其它情况则返回 FALSE。</span></span><br><span class="line"><span class="comment"> * while (!feof($fp)) 即当文件指针没有达到 End Of File，就循环读入数据直至读完。这是一个常见用法，我们使用fsockopen打开一个$fp来发送http头，请求后用feof判断是否读完来获取服务器响应的内容。</span></span><br><span class="line"><span class="comment"> * 但是这使用feof时要特别注意一点，php手册上关于feof有这样一个说明：</span></span><br><span class="line"><span class="comment"> * Warning：如果服务器没有关闭由 fsockopen() 所打开的连接，feof() 会一直等待直到超时而返回 TRUE。默认的超时限制是 60 秒，可以使用 stream_set_timeout() 来改变这个值。</span></span><br><span class="line"><span class="comment"> * 也就是一个打开的socket连接，没有在读完后关闭，feof会一直返回true直到超时。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">readByFEof</span><span class="params">($fp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    $str = <span class="string">''</span>;</span><br><span class="line">    <span class="keyword">while</span> (!feof($fp)) &#123;</span><br><span class="line">        $result = fread($fp, <span class="number">1024</span>);</span><br><span class="line">        $str .= $result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $str;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (fwrite($fp, $requestInfo)) &#123;</span><br><span class="line">    $responseInfo = readByFEof($fp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> $responseInfo;</span><br></pre></td></tr></table></figure>
+
+<h3 id="curl-进行请求"><a href="#curl-进行请求" class="headerlink" title="curl 进行请求"></a>curl 进行请求</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$url         = <span class="string">'http://localhost:8080/'</span>;</span><br><span class="line">$path        = <span class="keyword">__DIR__</span> . <span class="string">'/tmp'</span>;</span><br><span class="line">$cookie_file = $path . <span class="string">'/cookie.txt'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!file_exists($cookie_file)) &#123;</span><br><span class="line">    file_put_contents($cookie_file, <span class="string">''</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// init</span></span><br><span class="line"></span><br><span class="line">$ch = curl_init();</span><br><span class="line"></span><br><span class="line"><span class="comment">// set</span></span><br><span class="line"></span><br><span class="line">curl_setopt($ch, CURLOPT_URL, $url);</span><br><span class="line">curl_setopt($ch, CURLOPT_HEADER, <span class="number">0</span>);</span><br><span class="line">curl_setopt_array($ch, [</span><br><span class="line">    CURLOPT_URL            =&gt; $url,</span><br><span class="line">    CURLOPT_RETURNTRANSFER =&gt; <span class="keyword">true</span>,</span><br><span class="line">    CURLOPT_ENCODING       =&gt; <span class="string">''</span>,</span><br><span class="line">    CURLOPT_MAXREDIRS      =&gt; <span class="number">10</span>,</span><br><span class="line">    CURLOPT_TIMEOUT        =&gt; <span class="number">60</span>,</span><br><span class="line">    CURLOPT_HTTP_VERSION   =&gt; CURL_HTTP_VERSION_1_1,</span><br><span class="line">    CURLOPT_CUSTOMREQUEST  =&gt; <span class="string">'POST'</span>,</span><br><span class="line">    CURLOPT_COOKIEFILE     =&gt; $cookie_file,</span><br><span class="line">    CURLOPT_COOKIEJAR      =&gt; $cookie_file,</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// $cookie = 'a=b;c=d;name=方世玉';</span></span><br><span class="line"><span class="comment">// curl_setopt($ch, CURLOPT_COOKIE, $cookie);</span></span><br><span class="line"><span class="comment">// exec</span></span><br><span class="line"></span><br><span class="line">$output = curl_exec($ch);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ($output === <span class="keyword">FALSE</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'CURL Error:'</span> . curl_error($ch);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// close</span></span><br><span class="line"></span><br><span class="line">curl_close($ch);</span><br><span class="line"></span><br><span class="line"><span class="keyword">echo</span> $output;</span><br></pre></td></tr></table></figure>
+
+<p>上面就是一个带有 cookie 的 http 请求，cookie 在 php-curl 的设置中有4种</p>
+<p>（ 我才发现我用的这个主题不支持表格md mmp)</p>
+<ul>
+<li>CURLOPT_COOKIE     <ul>
+<li>包含 cookie 数据的文件名，cookie 文件的格式可以是 Netscape 格式，或者只是纯 HTTP 头部风格，存入文件。如果文件名是空的，不会加载 cookie，但 cookie 的处理仍旧启用。 </li>
+</ul>
+</li>
+<li>CURLOPT_COOKIEFILE <ul>
+<li>包含 cookie 数据的文件名，cookie 文件的格式可以是 Netscape 格式，或者只是纯 HTTP 头部风格，存入文件。如果文件名是空的，不会加载 cookie，但 cookie 的处理仍旧启用。 </li>
+</ul>
+</li>
+<li>CURLOPT_COOKIEJAR  <ul>
+<li>连接结束后，比如，调用 curl_close 后，保存 cookie 信息的文件。                                                                                                     |</li>
+</ul>
+</li>
+</ul>
+<p>还有一种方法就是在header中直接设置</p>
+<p>正常使用的话 CURLOPT_COOKIEFILE , CURLOPT_COOKIEJAR 这两个设置使用起来很方便如果使用其他的方式的话，那么需要自行处理 cookie 的存储</p>
+<p>在使用 CURLOPT_COOKIEJAR 发现了一个有趣的事，相比与日常使用的浏览器（谷歌，edge等），我们使用脚本进行请求cookie请求会将cookie保存起来并不会过期这就会导致尽管cookie已经过期了但是仍然传送了过去，其实从某些方面来说也可以把这个作为一个辨别是否是爬虫的手段（手动滑稽）</p>
+<p>在使用 socket 进行 http 模拟的时候很明显就能感觉到是字符串在通信，传过去的和传回来的都是按格式规整好的字符串</p>
+<p>发送</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/?</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Host:localhost</span></span><br><span class="line">User-Agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36</span><br><span class="line"><span class="attribute">Content-Type:application/x-www-form-urlencoded</span></span><br><span class="line"><span class="attribute">Content-Length:61</span></span><br><span class="line">cookie:name=1417760419;</span><br><span class="line"></span><br><span class="line">username=%E5%8F%91%E4%B8%80%E4%B8%AA%E4%B8%AD%E6%96%87&amp;age=22</span><br></pre></td></tr></table></figure>
+<p>返回</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Host</span>: localhost</span><br><span class="line"><span class="attribute">Date</span>: Sun, 10 Feb 2019 23:15:08 +0800</span><br><span class="line"><span class="attribute">Connection</span>: close</span><br><span class="line"><span class="attribute">X-Powered-By</span>: PHP/7.2.10-0ubuntu0.18.04.1</span><br><span class="line"><span class="attribute">Set-Cookie</span>: mc1549811708=my+cookie+value</span><br><span class="line"><span class="attribute">Set-Cookie</span>: mc=my+cookie+value; expires=Sun, 10-Feb-2019 15:15:07 GMT; Max-Age=0</span><br><span class="line"><span class="attribute">Content-type</span>: text/html; charset=UTF-8</span><br><span class="line"></span><br><span class="line">array (</span><br><span class="line">    ....//太多了省略其实也就是一堆字符串</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>很容易看到一些关于 http 协议的参数，其中我在测试我们公司的主站时由于公司的服务器并没有主动断开 socket ，而我是用的 feof 读取返回值就导致程序一直等啊等，这一点我没有细做调试，所以也不太清楚是出在 nginx 上还是 php， 但是确实是可以让客户端和服务端建立长久的无用链接如果在客户端设置 Connection: close，也可以解决这种问题，而这种问题出现的源头是http1.1支持相关网络请求相关的实现，有兴趣的同学可以自行研究一下（手动狗头）</p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/web/blog/categories/php/">php</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/web/blog/tags/php/">php</a>, <a href="/web/blog/tags/http/">http</a>
+  </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="https://hzjoyous.github.io/web/blog/2018/10/27/php/php_011_curl/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="as_sitesearch" value="hzjoyous.github.io/web/blog">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Categories</h3>
+  <ul class="entry">
+  
+    <li><a href="/web/blog/categories/c/">c</a><small>11</small></li>
+  
+    <li><a href="/web/blog/categories/mysql/">mysql</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/node/">node</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/other/">other</a><small>14</small></li>
+  
+    <li><a href="/web/blog/categories/php/">php</a><small>23</small></li>
+  
+    <li><a href="/web/blog/categories/python/">python</a><small>1</small></li>
+  
+    <li><a href="/web/blog/categories/tool/">tool</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/web/blog/tags/blog/">blog</a><small>3</small></li>
+  
+    <li><a href="/web/blog/tags/c/">c</a><small>11</small></li>
+  
+    <li><a href="/web/blog/tags/command/">command</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/http/">http</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/java/">java</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/linux/">linux</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/mysql/">mysql</a><small>2</small></li>
+  
+    <li><a href="/web/blog/tags/node/">node</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/other/">other</a><small>14</small></li>
+  
+    <li><a href="/web/blog/tags/php/">php</a><small>23</small></li>
+  
+    <li><a href="/web/blog/tags/python/">python</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/spring/">spring</a><small>1</small></li>
+  
+    <li><a href="/web/blog/tags/tool/">tool</a><small>7</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2019 hzjoyous
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+<script src="/web/blog/js/jquery-3.4.1.min.js"></script>
+
+<script src="/web/blog/js/jquery.imagesloaded.min.js"></script>
+<script src="/web/blog/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/web/blog/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/web/blog/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>健身统计展示</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style type="text/css">
+        body {
+            text-align: center
+        }
+        
+        #Bodybuilding {
+            margin: 0 auto;
+        }
+        
+        table {
+            margin: auto;
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            table-layout: fixed;
+        }
+        
+        th {
+            font-size: 30px;
+        }
+        
+        table.altrowstable {
+            font-family: verdana, arial, sans-serif;
+            font-size: 35px;
+            color: #333333;
+            border-width: 1px;
+            border-color: #a9c6c9;
+            border-collapse: collapse;
+        }
+        
+        table.altrowstable th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #a9c6c9;
+        }
+        
+        table.altrowstable td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #a9c6c9;
+        }
+        
+        .oddrowcolor {
+            background-color: #d4e3e5;
+        }
+        
+        .evenrowcolor {
+            background-color: #c3dde0;
+        }
+        
+        button {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            width: 200px;
+            padding: 8px;
+            background-color: #428bca;
+            border-color: #357ebd;
+            color: #fff;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            /* future proofing */
+            -khtml-border-radius: 10px;
+            /* for old Konqueror browsers */
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid transparent;
+            font-weight: 900;
+            font-size: 200%
+        }
+        
+        .doneNumber {
+            font-weight: 500;
+            font-size: 100%
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="Bodybuilding">
+        <button v-on:click="updateData()">更新</button>
+        <table v-for="item in itemListAndDay">
+            <tr>
+                <th colspan="2">{{item.fitnessDate}}</th>
+            </tr>
+            <tr v-for="show in item.itemList" v-if="show.number">
+                <th>{{show.name}}</th>
+                <th>{{show.number}}</th>
+            </tr>
+        </table>
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+<script src="https://cdn.bootcss.com/axios/0.19.0/axios.min.js"></script>
+<script>
+    /**
+     * 肩推测试
+     * 后束测试
+     * 前束测试
+     * 深蹲测试
+     * 健步蹲测试
+     * 划船测试
+     * 二头弯举测试
+     */
+    function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) {
+                return pair[1];
+            }
+        }
+        return (false);
+    }
+    $app = new Vue({
+        el: '#Bodybuilding',
+        data: {
+            info: null,
+            itemListAndDay: [{
+                    fitnessDate: "2019-01-01",
+                    itemList: [{
+                        "type": "ShoulderPush",
+                        "name": "肩推",
+                        "number": 0
+                    }, {
+                        "type": "AfterBundle",
+                        "name": "后束",
+                        "number": 0
+                    }, {
+                        "type": "FrontBundle",
+                        "name": "前束",
+                        "number": 0
+                    }, {
+                        "type": "Squat",
+                        "name": "深蹲",
+                        "number": 0
+                    }, {
+                        "type": "boating",
+                        "name": "划船",
+                        "number": 0
+                    }, {
+                        "type": "TwoCurls",
+                        "name": "二头弯举",
+                        "number": 0
+                    }, ]
+                }
+
+            ],
+            baseUri: 'https://api.nonodi.com'
+        },
+        mounted() {
+            axios.get(this.baseUri + '/getFitnessStatistics', {
+                    params: {
+                        todayItemList: this.itemList,
+                        userToken: getQueryVariable('userToken')
+                    }
+                })
+                .then(response => (
+                    this.itemListAndDay = response.data.value
+                ))
+                .catch(error => console.log(error))
+
+        },
+        methods: {
+            updateData: function() {
+                axios.get(this.baseUri + '/getFitnessStatistics', {
+                        params: {
+                            todayItemList: this.itemList,
+                            userToken: getQueryVariable('userToken')
+                        }
+                    })
+                    .then(response => (
+                        this.itemListAndDay = response.data.value
+                    ))
+                    .catch(error => console.log(error))
+            }
+        }
+    });
+</script>
+
+</html>
