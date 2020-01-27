@@ -1,0 +1,20 @@
+{
+  "name": "simpleweb",
+  "version": "1.0.0",
+  "description": " ",
+  "main": " ",
+  "dependencies": {
+    "markdown-it": "^10.0.0",
+    "markdown-it-emoji": "^1.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": " "
+  },
+  "repository": {
+    "type": "git",
+    "url": " "
+  },
+  "author": "",
+  "license": "ISC"
+}
