@@ -144,7 +144,7 @@
                 <a :href="item.url">
                     <img :src="item.src">
                     <i :class="{mask:index!==showIndex&&!isMobile}" v-if="!isMobile"></i>
-                    <h1>{{item.name}}</h1>
+                    <h1 v-text="item.name">fighting</h1>
                     <!-- <p>{{item.desc}}</p> -->
                 </a>
             </li>

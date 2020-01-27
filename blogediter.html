@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link href="./blogcss/main.css" rel="stylesheet" type="text/css" />
+    <link href="./blogcss/jquery.fancybox.css" rel="stylesheet" type="text/css" />
+    <link href="./blogcss/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        .app {
+            height: 100%;
+            width: 100%;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 50px 700px 50px;
+            grid-gap: 1px;
+            height: 100%;
+        }
+
+
+        .h_simple_header {
+            background-color: #C2F3C4;
+            grid-column-start: span 2;
+
+        }
+
+        .h_simple_preview {
+            background-color: white;
+        }
+
+
+
+        .h_simple_editer {
+            background-color: #98FEFB;
+
+        }
+
+        .h_simple_preview textarea {
+            resize: none;
+
+        }
+
+        .footer {
+            background-color: #E5C0F8;
+            grid-area: f;
+            /* text-align: center; */
+            line-height: 200px;
+        }
+
+        img {
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="container">
+            <div class="h_simple_header">
+                HEADER
+            </div>
+            <div class="h_simple_editer">
+                <textarea v-model="xxx" id="editor" style="width: 100%; height: 100%;">
+                </textarea>
+            </div>
+
+            <div class="h_simple_preview" style="width: 100%; height: 100%;overflow: auto;">
+                <div v-html="result" id="preview"></div>
+            </div>
+            <div class="h_simple_op" style="grid-column-start: 2; grid-column-end: 3;">
+                <button>提交</button>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script type="text/javascript" src="./web/homepage/js/vue.min.js"></script>
+    <script type="text/javascript" src="./node_modules/markdown-it/dist/markdown-it.min.js"></script>
+    <script type="text/javascript" src="./node_modules/markdown-it-emoji/dist/markdown-it-emoji.min.js"></script>
+
+    <script>
+
+        md = new markdownit({
+            html: true,
+            linkify: true,
+            typographer: true,
+        }).use(markdownitEmoji);
+        var result = md.render('![Minion](https://octodex.github.com/images/minion.png)');
+
+
+        var app = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    xxx: `![Minion](https://octodex.github.com/images/minion.png)'`,
+                    hhtml: result
+                }
+            },
+            watch: {
+                xxx: function (val) {
+                    result = md.render(this.xxx);
+                    this.hhtml = result;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
